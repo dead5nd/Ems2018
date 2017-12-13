@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>座席変更</title>
+		<link href="./css/bootstrapFlatly.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="./jquery/jquery-2.1.4.min.js"></script>
+		<script src="./jquery/jquery.validate.min.js"></script>
+		<script src="./jquery/jquery.tmpl.min.js"></script>
+		<script src="./jquery/bootstrap.min.js"></script>
+		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
+		<script src="./jquery/jquery.blockUI.js"></script>
+		<script src="./jquery/autosize.min.js"></script>
+		
+		<!-- bootstrap-datepicker -->
+		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
+		<script src="./jquery/bootstrap-datepicker.min.js"></script>
+		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
+		
+
+		<!-- Data Tables -->
+		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
+		<script src="./jquery/jquery.dataTables.min.js"></script>
+		
+		
+		<link rel="stylesheet" href="./css/custom.css" />
+		
+		
+		<script src="./js/control.js"></script>
+				
+
+
+	</head>
+	<body>
+		<div id="page01">
+		<div class="container">
+		<div class="row">
+		<!-- ################ メニュー ################ -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenu">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="./adm000.html">座席変更</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="navbarMenu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">願書受付 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">郵送書類チェック登録</a></li>
+								<li><a href="#">受験番号発行</a></li>
+								<li><a href="#">試験会場修正</a></li>
+								<li><a href="#">座席変更</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">WEB出願連携データ入力</a></li>
+								<li><a href="#">WEB出願連携データ出力</a></li>
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験準備 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">一斉通知メール</a></li>
+							</ul>
+						</li>
+												
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験結果登録 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">欠席者登録</a></li>
+								<li><a href="#">試験成績登録</a></li>
+								<li><a href="#">合否結果登録</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">学納金管理連携データ出力</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">入学準備業務 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">学納金管理連携データ入力</a></li>
+								<li><a href="#">納金状況登録</a></li>
+								<li><a href="#">納金状況集計</a></li>
+								<li><a href="#">補欠繰上登録</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">学籍番号発行</a></li>
+								<li><a href="#">連携データ出力</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">受験生情報照会 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">受験生情報照会</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">マスタ管理 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="./ndm003.html">マスタデータインポート</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+					<button type="button" class="btn btn-default navbar-btn ">ログアウト</button>
+					<p class="navbar-text navbar-right">担当者１でログイン中　</p>
+				</div>
+			</div>
+		</nav>
+
+<pre>
+試験会場内での座席番号を変更します。
+変更後の座席番号に別の受験者が設定済みの場合は、入れ替えになります。
+</pre>	
+				
+		<form class="form-horizontal" id="page01form">
+			<div class="panel panel-primary">
+			<div class="panel-body">
+			<fieldset class="cs-search">
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="uketuke">受験番号</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="uketuke" id="uketuke">
+					</div>
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-default" id="page01Search">検索</button>
+					</div>
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="simei">氏名</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="simei" id="simei" readonly="readonly" value="受験生０００１">
+					</div>
+					
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="kaijyo">試験会場</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="kaijyo" id="kaijyo" readonly="readonly" value="名古屋">
+					</div>
+					
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="kyositu">教室</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="kyositu" id="kyositu" readonly="readonly" value="101教室">
+					</div>
+					
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="zaseki">座席番号</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="zaseki" id="zaseki" readonly="readonly" value="35">
+					</div>
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="new_kyositu">変更後教室</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="new_kyositu" id="new_kyositu">
+					</div>
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="new_zaseki">変更後座席番号</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="new_zaseki" id="new_zaseki">
+					</div>
+				</div>
+				
+			</fieldset>
+
+			</div> <!--panel-body-->
+			</div> <!--panel-->
+			
+
+			<div class="form-group">
+				
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-primary center-block" id="page01Commit">登録</button>
+				</div>
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-default center-block" id="page01Cancel">キャンセル</button>
+				</div>
+			</div>
+			
+		</form>
+
+
+		</div> <!--row-->
+		</div> <!--container-->
+		</div> <!--page-->
+
+<!-- ################# メール送信入力ダイアログ ###############-->
+<div class="modal fade" id="sendMail" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title">通知メール入力</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="mailTitle">送信先</label>
+						<input type="text" class="form-control" id="mailTo" value="受験生XXXXX　(kojin@dummy.com)" readonly="readonly">
+					</div>
+					<div class="form-group">
+						<label for="template">ひな形</label>
+						<select class="form-control" name="status" id="template">
+							<option value="1">メールひな形１</option>
+							<option value="2">メールひな形２</option>
+							<option value="3">メールひな形３</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="mailTitle">件名</label>
+						<input type="text" class="form-control" id="mailTitle" >
+					</div>
+					<div class="form-group">
+						<label for="mailMessage">メッセージ</label>
+						<textarea rows="5" class="form-control" id="mailMessage" ></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				<button type="button" class="btn btn-primary" id="mailSendOK">送信</button>
+			</div>
+		</div>
+	</div>
+</div>
+		
+		
+		
+</body>
+</html>

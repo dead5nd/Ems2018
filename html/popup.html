@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>入試管理システムトップ</title>
+		<link href="./css/bootstrapFlatly.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="./jquery/jquery-2.1.4.min.js"></script>
+		<script src="./jquery/jquery.validate.min.js"></script>
+		<script src="./jquery/bootstrap.min.js"></script>
+		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
+		<script src="./jquery/jquery.blockUI.js"></script>
+		<script src="./jquery/autosize.min.js"></script>
+		
+		<!-- bootstrap-datepicker 
+		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
+		<script src="./jquery/bootstrap-datepicker.min.js"></script>
+		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
+		-->
+
+		<link rel="stylesheet" href="./css/custom.css" />
+
+
+	</head>
+	<body>
+		
+		<div id="page01">
+		<div class="container">
+		<div class="row">
+		<!-- ################ メニュー ################ -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenu">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">入試管理システム</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="navbarMenu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">願書受付 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="./adm101.html">郵送書類チェック登録</a></li>
+								<li><a href="./adm102.html">受験番号発行</a></li>
+								<li><a href="./adm103.html">試験会場修正</a></li>
+								<li><a href="./adm104.html">座席変更</a></li>
+								<li><a href="./adm105.html">各種帳票印刷</a></li>
+								<li><a href="./adm106.html">WEB出願連携データ入力</a></li>
+								<li><a href="./adm107.html">WEB出願連携データ出力</a></li>
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験準備 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="./adm201.html">一斉通知メール</a></li>
+							</ul>
+						</li>
+												
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験結果登録 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="./adm301.html">試験成績登録</a></li>
+								<li><a href="#">合否結果登録</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">学納金管理連携データ出力</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">入学準備業務 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">学納金管理連携データ入力</a></li>
+								<li><a href="#">納金状況登録</a></li>
+								<li><a href="#">納金状況集計</a></li>
+								<li><a href="#">補欠繰上登録</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">学籍番号発行</a></li>
+								<li><a href="#">連携データ出力</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">受験生情報照会 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">受験生情報照会</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">マスタ管理 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="./ndm003.html">マスタデータインポート</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+					<button type="button" class="btn btn-default navbar-btn ">ログアウト</button>
+					<p class="navbar-text navbar-right">担当者１でログイン中　</p>
+				</div>
+			</div>
+		</nav>
+
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleModal">
+			モーダル・ダイアログ 呼び出し
+		</button>
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleModal2">
+			モーダル・ダイアログ 呼び出し2
+		</button>
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleModal3">
+			モーダル・ダイアログ 呼び出し3
+		</button>
+
+
+
+		</div> <!--row-->
+		</div> <!--container-->
+		</div> <!--page-->
+		
+<!-- モーダル・ダイアログ -->
+<div class="modal fade" id="sampleModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title">確認</h4>
+			</div>
+			<div class="modal-body">
+対象件数は：2100件です。<br>
+<br>
+受験番号をWEB出願システムに引き渡すためのデータを出力します。<br>
+指定された試験区分の受験番号はキャンセルができなくなります。<br>
+<br>
+よろしいですか？
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+				<button type="button" class="btn btn-primary">実行</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- モーダル・ダイアログ -->
+<div class="modal fade" id="sampleModal2" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title">確認</h4>
+			</div>
+			<div class="modal-body">
+対象件数は：500件です。<br>
+<br>
+よろしいですか？
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+				<button type="button" class="btn btn-primary">実行</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- モーダル・ダイアログ -->
+<div class="modal fade" id="sampleModal3" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title">確認</h4>
+			</div>
+			<div class="modal-body">
+
+受験番号の発行処理が正常に終了しました。<br>
+<br>
+「対象者リスト出力」ボタンをクリックすると、採番された受験番号とともに処理対象者のリストをCSVファイルで出力します。
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				<button type="button" class="btn btn-primary">対象者リスト出力</button>
+			</div>
+		</div>
+	</div>
+</div>
+	
+</body>
+</html>

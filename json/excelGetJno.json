@@ -1,0 +1,14 @@
+{
+   "stat":"OK",
+   "srch_list":[
+   	 {"seiri_no":"12001","seiri_seq":"01","juken_no":"15001","simei":"藤田太郎1"},
+   	 {"seiri_no":"12002","seiri_seq":"01","juken_no":"15002","simei":"藤田太郎2"},
+   	 {"seiri_no":"12003","seiri_seq":"01","juken_no":"15003","simei":"藤田太郎3"},
+   	 {"seiri_no":"12004","seiri_seq":"01","juken_no":"15001","simei":"藤田太郎1"},
+   	 {"seiri_no":"12005","seiri_seq":"01","juken_no":"15002","simei":"藤田太郎2"},
+   	 {"seiri_no":"12006","seiri_seq":"01","juken_no":"15003","simei":"藤田太郎3"},
+   	 {"seiri_no":"12007","seiri_seq":"01","juken_no":"15001","simei":"藤田太郎1"},
+   	 {"seiri_no":"12008","seiri_seq":"01","juken_no":"15002","simei":"藤田太郎2"},
+   	 {"seiri_no":"12009","seiri_seq":"01","juken_no":"15003","simei":"藤田太郎3"}
+   ]
+}

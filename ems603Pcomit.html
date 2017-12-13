@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>事務処理フェーズ確定</title>
+		<link href="./css/bootstrapFlatly.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="./jquery/jquery-2.1.4.min.js"></script>
+		<script src="./jquery/jquery.validate.min.js"></script>
+		<script src="./jquery/jquery.tmpl.min.js"></script>
+		<script src="./jquery/bootstrap.min.js"></script>
+		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
+		<script src="./jquery/jquery.blockUI.js"></script>
+		<script src="./jquery/autosize.min.js"></script>
+		
+		<!-- bootstrap-datepicker 
+		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
+		<script src="./jquery/bootstrap-datepicker.min.js"></script>
+		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
+		-->
+
+		<!-- Data Tables -->
+		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
+		<script src="./jquery/jquery.dataTables.min.js"></script>
+		<!-- Data Tables(Fixed Header) -->
+		<link rel="stylesheet" href="./css/fixedHeader.bootstrap.min.css" />
+		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
+
+		<link rel="stylesheet" href="./css/custom.css" />
+				
+		<script src="./js/settingcode.js?ver=20170323-1"></script>
+		<script src="./js/commoncode.js?ver=20170323-1"></script>
+		<script src="./js/cmnlogin.js?ver=20170323-1"></script>
+		<script src="./js/menuitem.js?ver=20170323-1"></script>
+		<script src="./js/cd.js?ver=20170323-1"></script>
+		<script src="./js/cmncontrol.js?ver=20170323-1"></script>
+		
+		<!--<script src="./js/ems603/ems603valid.js"></script>-->
+		<script src="./js/ems603/ems603viewmodel.js?ver=20170323-1"></script>
+		<script src="./js/ems603/ems603control.js?ver=20170323-1"></script>
+		<script src="./js/stepchk.js?ver=20170323-1"></script>
+
+	</head>
+	<body>
+		
+		<div id="page01">
+		<div class="container">
+		<div class="row">
+		
+		<div id="menuParts">
+			<!--MENU-->
+		</div>
+		
+		<!-- ################ 入力画面 ################ -->
+		<form class="form-horizontal" id="page01form">
+			<div class="panel panel-primary">
+			<div class="panel-body">
+			<fieldset class="cs-search">
+			
+		  		<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
+		  			<div class="col-sm-5">
+			  			<div id="siken_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="siken_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="siken_cd" id="siken_cd">
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="gakka_cd">学科</label>
+		  			<div class="col-sm-5">
+		  				<div id="gakka_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="gakka_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="gakka_cd" id="gakka_cd">
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="naiyo">確定内容</label>
+		  			<div class="col-sm-4">
+		  				<select class="form-control" name="naiyo" id="naiyo">
+							<option value="1">受験番号確定</option>
+							<option value="2">合否確定</option>
+							<option value="4">(一次合否確定)</option>
+							<option value="3">入学者確定</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for=""></label>
+		  			<div class="col-sm-2">
+						<button type="button" class="btn btn-primary" id="page01Commit">確定登録</button>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-warning" id="page01Cancel">前の状態に戻す</button>
+					</div>
+				</div>
+			</fieldset>
+
+			</div> <!--panel-body-->
+			</div> <!--panel-->
+			
+			<div id="table_Tmpl"></div>
+				
+			<!-- jQuery Template -->
+			<script id="table_Script" type="text/x-jquery-tmpl">
+
+				<table class="table table-striped" id="page01Table">
+					<thead>
+						<tr class="active">
+							<th>試験区分</th>
+							<th>学科</th>
+							<th>現在のフェーズ</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					{{each rows}}
+						<tr>
+							<td> ${c1} </td>
+							<td> ${c2}</td>
+							<td> ${c3}</td>
+						</tr>
+					{{/each}}
+						</tbody>
+				</table>
+			<!-- jQuery Template -->
+			</script>
+
+		</form>
+
+		
+		</div> <!--row-->
+		</div> <!--container-->
+		</div> <!--page-->
+
+		<div id="dialogParts">
+			<!--DIALOG-->
+		</div>		
+		
+		
+</body>
+</html>

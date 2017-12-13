@@ -1,0 +1,12 @@
+{
+ "stat":"OK",
+ "srch_list":[
+ {"seiri_no":"10001","seiri_seq":"01","juken_no":"111501","simei":"受験生１００１","uketuke_stat":"1","ok_bi":"2016/11/5","check_bi":"2016/11/5","biko":"","block_no":"1","syutugan_bi":"2016/11/1","chosa_json1":""},
+ {"seiri_no":"10002","seiri_seq":"01","juken_no":"","simei":"受験生１００２","uketuke_stat":"2","ok_bi":"","check_bi":"2016/11/5","biko":"","block_no":"","syutugan_bi":"2016/11/1","chosa_json1":{"平均評価":"70","出席1年":"A","出席2年":"A","出席3年":"A"}},
+ {"seiri_no":"10003","seiri_seq":"01","juken_no":"","simei":"受験生１００３","uketuke_stat":"3","ok_bi":"","check_bi":"2016/11/5","biko":"","block_no":"","syutugan_bi":"2016/11/1","chosa_json1":{"平均評価":"70","出席1年":"A","出席2年":"A","出席3年":"A"}},
+ {"seiri_no":"10004","seiri_seq":"01","juken_no":"","simei":"受験生１００４","uketuke_stat":"0","ok_bi":"","check_bi":"","biko":"","block_no":"","syutugan_bi":"2016/11/1","chosa_json1":""},
+ {"seiri_no":"10005","seiri_seq":"01","juken_no":"","simei":"受験生１００５","uketuke_stat":"","ok_bi":"","check_bi":"","biko":"","block_no":"","syutugan_bi":"2016/11/1","chosa_json1":""},
+ {"seiri_no":"10006","seiri_seq":"01","juken_no":"","simei":"受験生１００６","uketuke_stat":"","ok_bi":"","check_bi":"","biko":"","block_no":"","syutugan_bi":"2016/11/1","chosa_json1":""},
+ {"seiri_no":"10007","seiri_seq":"01","juken_no":"","simei":"受験生１００７","uketuke_stat":"","ok_bi":"","check_bi":"","biko":"","block_no":"","syutugan_bi":"2016/11/1","chosa_json1":""}
+ ]
+}

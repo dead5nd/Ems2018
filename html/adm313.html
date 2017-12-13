@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>合否登録(看専）</title>
+		<link href="./css/bootstrapFlatly.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="./jquery/jquery-2.1.4.min.js"></script>
+		<script src="./jquery/jquery.validate.min.js"></script>
+		<script src="./jquery/jquery.tmpl.min.js"></script>
+		<script src="./jquery/bootstrap.min.js"></script>
+		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
+		<script src="./jquery/jquery.blockUI.js"></script>
+		<script src="./jquery/autosize.min.js"></script>
+		
+		<!-- bootstrap-datepicker -->
+		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
+		<script src="./jquery/bootstrap-datepicker.min.js"></script>
+		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
+		
+
+		<!-- Data Tables -->
+		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
+		<script src="./jquery/jquery.dataTables.min.js"></script>
+		
+		<!-- Data Tables FixedColumns -->
+		<link rel="stylesheet" href="./css/fixedColumns.bootstrap.min.css" />
+		<script src="./jquery/dataTables.fixedColumns.min.js"></script>
+		
+		<link rel="stylesheet" href="./css/custom.css" />
+		
+		<script src="./js/control.js"></script>
+
+	</head>
+	<body>
+		<div id="page01">
+		<div class="container">
+		<div class="row">
+		<!-- ################ メニュー ################ -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenu">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="./adm000.html">合否登録(看専）</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="navbarMenu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">願書受付 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">郵送書類チェック登録</a></li>
+								<li><a href="#">受験番号発行</a></li>
+								<li><a href="#">試験会場修正</a></li>
+								<li><a href="#">座席変更</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">WEB出願連携データ入力</a></li>
+								<li><a href="#">WEB出願連携データ出力</a></li>
+							</ul>
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験準備 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">一斉通知メール</a></li>
+							</ul>
+						</li>
+												
+						<li class="dropdown active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験結果登録 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">欠席者登録</a></li>
+								<li><a href="#">試験成績登録</a></li>
+								<li><a href="#">合否結果登録</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">学納金管理連携データ出力</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">入学準備業務 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">学納金管理連携データ入力</a></li>
+								<li><a href="#">納金状況登録</a></li>
+								<li><a href="#">納金状況集計</a></li>
+								<li><a href="#">補欠繰上登録</a></li>
+								<li><a href="#">各種帳票印刷</a></li>
+								<li><a href="#">学籍番号発行</a></li>
+								<li><a href="#">連携データ出力</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">受験生情報照会 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">受験生情報照会</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">マスタ管理 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="./ndm003.html">マスタデータインポート</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+					<button type="button" class="btn btn-default navbar-btn ">ログアウト</button>
+					<p class="navbar-text navbar-right">担当者１でログイン中　</p>
+				</div>
+			</div>
+		</nav>
+				
+		<form class="form-horizontal" id="page01form">
+			<div class="panel panel-primary">
+			<div class="panel-body">
+			<fieldset class="cs-search">
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="nyusi">試験区分</label>
+		  			<div class="col-sm-4">
+		  				<select class="form-control" name="nyusi" id="nyusi">
+							<option value="1">推薦入試</option>
+							<option value="2">一般入試</option>
+						</select>
+					</div>
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-default" id="page01Search">検索</button>
+					</div>
+				</div>
+			</fieldset>
+
+			</div> <!--panel-body-->
+			</div> <!--panel-->
+				
+				<table class="table table-striped" id="page01Table_Sort">
+					<thead>
+						<tr class="active">
+							<th>順位</th>
+							<th>受験番号</th>
+							<th>氏名</th>
+							<th>総合点</th>
+							<th>合否判定</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>3001</td>
+							<td>受験生０００１</td>
+							<td>480</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td>2</td>
+							<td>5022</td>
+							<td>受験生５０２２</td>
+							<td>478</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td>3</td>
+							<td>3066</td>
+							<td>受験生３０６６</td>
+							<td>475</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td>4</td>
+							<td>4045</td>
+							<td>受験生４０４５</td>
+							<td>470</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td>5</td>
+							<td>3022</td>
+							<td>受験生３０２２</td>
+							<td>468</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>4066</td>
+							<td>受験生４０６６</td>
+							<td>465</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td>7</td>
+							<td>4050</td>
+							<td>受験生４０５０</td>
+							<td>460</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<td>8</td>
+							<td>5022</td>
+							<td>受験生５０２２</td>
+							<td>458</td>
+							<td>
+								<select class="form-control" name="hantei" id="hantei">
+									<option value="0"></option>
+									<option value="2">合格</option>
+									<option value="3">補欠</option>
+									<option value="4">不合格</option>
+								</select>
+							</td>
+							
+						</tr>
+						
+					</tbody>
+				</table>
+
+				<div class="form-group">
+					
+					<div class="col-xs-3">
+						<button type="button" class="btn btn-primary center-block" id="page01Commit">登録</button>
+					</div>
+					<div class="col-xs-3">
+						<button type="button" class="btn btn-default center-block" id="page01Cancel">キャンセル</button>
+					</div>
+				</div>
+			
+		</form>
+
+
+		</div> <!--row-->
+		</div> <!--container-->
+		</div> <!--page-->
+
+		
+</body>
+</html>

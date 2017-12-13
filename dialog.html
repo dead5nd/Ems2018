@@ -1,0 +1,92 @@
+
+<!-- ################# アラートモーダル・ダイアログ ###############-->
+<div class="modal fade" id="alertModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title"><div id="alertModalTitle">タイトル</div></h4>
+			</div>
+			<div class="modal-body">
+				<div id="alertModalMessage">本文</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">確認</button>
+			</div>
+		</div>
+	</div>
+</div>		
+
+<!-- ################# アラートモーダル・ダイアログ(OK時にコールバック) ###############-->
+<div class="modal fade" id="alertModalCB" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title"><div id="alertModalTitleCB">タイトル</div></h4>
+			</div>
+			<div class="modal-body">
+				<div id="alertModalMessageCB">本文</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" id="alertModalOK">確認</button>
+			</div>
+		</div>
+	</div>
+</div>		
+
+<!-- ################# 確認モーダル・ダイアログ(OK時にコールバック) ###############-->
+<div class="modal fade" id="confModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title"><div id="confModalTitle">タイトル</div></h4>
+			</div>
+			<div class="modal-body">
+				<div id="confModalMessage">本文</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal"><div id="confModalButtonL">ボタン名</div></button>
+				<button type="button" class="btn btn-primary" id="confModalOK"><div id="confModalButtonR">ボタン名</div></button>
+			</div>
+		</div>
+	</div>
+</div>						
+
+<!-- ################# 確認モーダル・ダイアログ(OK時とNG時にコールバック) ###############-->
+<div class="modal fade" id="confModalCB" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title"><div id="confModalTitleCB">タイトル</div></h4>
+			</div>
+			<div class="modal-body">
+				<div id="confModalMessageCB">本文</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" id="confModalNGCB"><div id="confModalButtonLCB">ボタン名</div></button>
+				<button type="button" class="btn btn-primary" id="confModalOKCB"><div id="confModalButtonRCB">ボタン名</div></button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ################# 確認モーダル・ダイアログ(OK時とNG時にコールバック) ###############-->
+<div class="modal fade" id="confModalCB2" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+				<h4 class="modal-title"><div id="confModalTitleCB2">タイトル</div></h4>
+			</div>
+			<div class="modal-body">
+				<div id="confModalMessageCB2">本文</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" id="confModalNGCB2"><div id="confModalButtonLCB2">ボタン名</div></a>
+				<a href="#" class="btn btn-primary" id="confModalOKCB2" download="jno_export.csv"><div id="confModalButtonRCB2">ボタン名</div></a>
+			</div>
+		</div>
+	</div>
+</div>

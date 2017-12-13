@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>受験生情報照会</title>
+		<link href="./css/bootstrapFlatly.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="./jquery/jquery-2.1.4.min.js"></script>
+		<script src="./jquery/jquery.validate.min.js"></script>
+		<script src="./jquery/jquery.tmpl.min.js"></script>
+		<script src="./jquery/bootstrap.min.js"></script>
+		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
+		<script src="./jquery/jquery.blockUI.js"></script>
+		<script src="./jquery/autosize.min.js"></script>
+		<script src="./jquery/encoding.js"></script>
+		
+		<!-- bootstrap-datepicker 
+		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
+		<script src="./jquery/bootstrap-datepicker.min.js"></script>
+		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
+		-->
+
+		<!-- Data Tables -->
+		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
+		<script src="./jquery/jquery.dataTables.min.js"></script>
+		<!-- Data Tables(Fixed Header) -->
+		<link rel="stylesheet" href="./css/fixedHeader.bootstrap.min.css" />
+		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
+
+		<link rel="stylesheet" href="./css/custom.css" />
+				
+		<script src="./js/settingcode.js?ver=20171109"></script>
+		<script src="./js/commoncode.js?ver=20171109"></script>
+		<script src="./js/cmnlogin.js?ver=20171109"></script>
+		<script src="./js/menuitem.js?ver=20171109"></script>
+		<script src="./js/cd.js?ver=20171109"></script>
+		<script src="./js/utf2sjis.js?ver=20171109"></script>
+		<script src="./js/cmncontrol.js?ver=20171109"></script>
+		
+		<script src="./js/ems501/ems501valid.js?ver=20171109"></script>
+		<script src="./js/ems501/ems501viewmodel.js?ver=20171109"></script>
+		<script src="./js/ems501/ems501control.js?ver=20171109"></script>
+
+	</head>
+	<body>
+		
+		<div id="page01">
+		<div class="container">
+		<div class="row">
+		
+		<div id="menuParts">
+			<!--MENU-->
+		</div>
+		
+		<!-- ################ 入力画面 ################ -->
+		<form class="form-horizontal" id="page01form1">
+			<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<a data-toggle="collapse" href="#searchAccCollapse">
+						検索条件
+					</a>
+				</h3>
+			</div>
+			
+			<div id="searchAccCollapse" class="panel-collapse collapse in">
+			<div class="panel-body">
+			<fieldset class="cs-search">
+			
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
+		  			<div class="col-sm-5">
+			  			<div id="siken_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="siken_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="siken_cd" id="siken_cd">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+					<label class="col-sm-1 control-label" for="gakka_cd">学科</label>
+		  			<div class="col-sm-5">
+		  				<div id="gakka_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="gakka_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="gakka_cd" id="gakka_cd">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="sikenti_cd">試験会場</label>
+		  			<div class="col-sm-5">
+		  				<div id="sikenti_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="sikenti_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="sikenti_cd" id="sikenti_cd">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${sikenti_cd} > ${sikenti_nm} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+					<label class="col-sm-1 control-label" for="dai2_kubun">第2志望条件</label>
+		  			<div class="col-sm-3">
+		  				<select class="form-control" name="dai2_kubun" id="dai2_kubun">
+				  			<option value="0" >第2志望含む</option>
+				  			<option value="1" selected>第2志望含まない</option>
+				  			<option value="2" >第2志望のみ</option>
+						</select>
+					</div>
+					
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="uketuke_stat">受付状況</label>
+		  			<div class="col-sm-5">
+		  				<div id="uketuke_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="uketuke_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="uketuke_stat" id="uketuke_stat">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+					<label class="col-sm-1 control-label" for="gohi_stat">合否状況</label>
+		  			<div class="col-sm-5">
+		  				<div id="gohi_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="gohi_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="gohi_stat" id="gohi_stat">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+				</div>
+
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="nokin_stat">納金状況</label>
+		  			<div class="col-sm-5">
+		  				<div id="nokin_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="nokin_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="nokin_stat" id="nokin_stat">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+					<label class="col-sm-1 control-label" for="heigan_seq">併願番号</label>
+					<div class="col-sm-2">
+		  				<input type="text"  class="form-control" name="heigan_seq" id="heigan_seq" placeholder="">
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="seiri_no">整理番号</label>
+		  			<div class="col-sm-5">
+		  				<input type="text"  class="form-control" name="seiri_no" id="seiri_no" placeholder="">
+					</div>
+					<label class="col-sm-1 control-label" for="juken_no">受験番号</label>
+		  			<div class="col-sm-5">
+		  				<input type="text"  class="form-control" name="juken_no" id="juken_no" placeholder="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="zaseki_warihuri">座席割振</label>
+					<div class="col-sm-3">
+		  				<select class="form-control" name="zaseki_warihuri" id="zaseki_warihuri">
+				  			<option value="" >指定なし</option>
+				  			<option value="0" >自動</option>
+				  			<option value="1" >手動</option>
+						</select>
+					</div>
+					<div class="col-sm-1"></div>
+					<label class="col-sm-2 control-label" for="juken_stat">受験番号発行状態</label>
+					<div class="col-sm-3">
+		  				<select class="form-control" name="juken_stat" id="juken_stat">
+				  			<option value="" >指定なし</option>
+				  			<option value="0" >未発行</option>
+				  			<option value="1" >発行済</option>
+						</select>
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="kanji_simei">氏名</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="kanji_simei" id="kanji_simei" placeholder="漢字">
+					</div>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="kana_simei" id="kana_simei" placeholder="カナ">
+					</div>
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-default" id="page01Search">検索</button>
+					</div>
+				</div>
+				
+			</fieldset>
+
+			</div> <!--panel-body-->
+			</div> <!--panel collapse-->
+			</div> <!--panel-->
+		</form>
+		
+		<form class="form-horizontal" id="page01form2" enctype="multipart/form-data">
+			<input type="hidden" id="nendo" name="nendo">
+			<fieldset id="csv_upload">
+				<div class="form-group">
+					<div class="radio">
+						<label>
+							<input type="radio" value="1" name="joho_kubun" id="choice1" checked> 調査書情報ファイルを指定
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" value="2" name="joho_kubun" id="choice2"> その他情報ファイルを指定
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4">
+			 				<input type="file" id="csv_file" name="csv_file">
+					</div>
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-primary" id="page01Submit">一括登録</button>
+					</div>
+				</div>
+			</fieldset>
+
+			<div id="table_Tmpl"></div>
+				
+				<!-- jQuery Template -->
+			  	<script id="table_Script" type="text/x-jquery-tmpl">
+			  		<div class="form-group">
+						<div class="col-xs-4">
+							<a href="#" class="btn btn-primary " id="export1" download="gakuji_export.csv">検索結果を学事システム連携形式で出力</a>
+						</div>
+						<div class="col-xs-4">
+							<a href="#" class="btn btn-default " id="export2" download="jmember_export.csv">検索結果のすべての情報を出力</a>
+						</div>
+						<div class="col-xs-3">
+							<a href="#" class="btn btn-default " id="page01Cancel">検索条件再指定</a>
+						</div>
+					</div>
+
+					<table class="table table-striped" id="page01Table">
+						<thead>
+							<tr class="active">
+								<th>整理番号</th>
+								<th>受験番号</th>
+								<th width="150px">氏名</th>
+								<th>受付</th>
+								<th>合否</th>
+								<th>納金</th>
+								<th>併願</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						{{each rows}}
+							<tr id=${gakka_cd}>
+								<td> ${seiri_no_short}</td>
+								<td> ${juken_no} </td>
+								<td> <a href="./ems500RefDt.html?seiri_no=${seiri_no}&gakka_cd=${gakka_cd}&gakubu_cd=${gakubu_cd}&log=${log}" target="_blank">${simei}</a></td>
+								<td> ${uketuke} </td>
+								<td> ${gohi}</td>
+								<td> ${nokin}</td>
+								<td><a href="./ems504OverLap.html?seiri_no=${seiri_no}&gakka_cd=${gakka_cd}&gakubu_cd=${gakubu_cd}&log=${log}&heigan_seq=${heigan_seq}" target="_blank">${heigan_seq}</a></td>
+							</tr>
+						{{/each}}
+
+						</tbody>
+					</table>
+
+				<!-- jQuery Template -->
+				</script>
+			
+		</form>
+		
+		</div> <!--row-->
+		</div> <!--container-->
+		</div> <!--page-->
+
+		<div id="dialogParts">
+			<!--DIALOG-->
+		</div>		
+		
+		
+</body>
+</html>

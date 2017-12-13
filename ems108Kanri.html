@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>マイページ検索</title>
+		<link href="./css/bootstrapFlatly.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="./jquery/jquery-2.1.4.min.js"></script>
+		<script src="./jquery/jquery.validate.min.js"></script>
+		<script src="./jquery/jquery.tmpl.min.js"></script>
+		<script src="./jquery/bootstrap.min.js"></script>
+		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
+		<script src="./jquery/jquery.blockUI.js"></script>
+		<script src="./jquery/autosize.min.js"></script>
+		<script src="./jquery/sha256.js"></script>
+		<script src="./jquery/encoding.js"></script>
+		
+		<!-- bootstrap-datepicker -->
+		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
+		<script src="./jquery/bootstrap-datepicker.min.js"></script>
+		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
+		
+
+		<!-- Data Tables -->
+		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
+		<script src="./jquery/jquery.dataTables.min.js"></script>
+		<!-- Data Tables(Fixed Header) -->
+		<link rel="stylesheet" href="./css/fixedHeader.bootstrap.min.css" />
+		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
+
+		<link rel="stylesheet" href="./css/custom.css" />
+				
+		<script src="./js/settingcode.js?ver=20171204"></script>
+		<script src="./js/commoncode.js?ver=20171204"></script>
+		<script src="./js/cmnlogin.js?ver=20171204"></script>
+		<script src="./js/menuitem.js?ver=20171204"></script>
+		<script src="./js/cd.js?ver=20171204"></script>
+		<script src="./js/utf2sjis.js?ver=20171204"></script>
+		<script src="./js/cmncontrol.js?ver=20171204"></script>
+		
+		<script src="./js/ems108/ems108valid.js?ver=20171204"></script>
+		<script src="./js/ems108/ems108viewmodel.js?ver=20171204"></script>
+		<script src="./js/ems108/ems108control.js?ver=20171204"></script>
+
+	</head>
+	<body>
+		
+		<div id="page01">
+		<div class="container">
+		<div class="row">
+		
+		<div id="menuParts">
+			<!--MENU-->
+		</div>
+		
+		<!-- ################ 入力画面 ################ -->
+		<form class="form-horizontal" id="page01form1">
+			<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<a data-toggle="collapse" href="#searchAccCollapse">
+						検索条件
+					</a>
+				</h3>
+			</div>
+			
+			<div id="searchAccCollapse" class="panel-collapse collapse in">
+			<div class="panel-body">
+			<fieldset class="cs-search">
+			
+
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
+		  			<div class="col-sm-5">
+			  			<div id="siken_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="siken_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="siken_cd" id="siken_cd">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+					<label class="col-sm-1 control-label" for="gakka_cd">学科</label>
+		  			<div class="col-sm-5">
+		  				<div id="gakka_Tmpl"></div>
+			  			<!-- jQuery Template -->
+			  				<script id="gakka_Script" type="text/x-jquery-tmpl">
+				  				<select class="form-control" name="gakka_cd" id="gakka_cd">
+				  				<option value="" >指定なし</option>
+				  				{{each rows}}
+									<option value=${cd} > ${name} </option>
+								{{/each}}	
+								</select>
+							</script>
+						<!-- jQuery Template -->
+					</div>
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="seiri_no">整理番号</label>
+		  			<div class="col-sm-5">
+		  				<input type="text"  class="form-control" name="seiri_no" id="seiri_no" placeholder="">
+					</div>
+					<label class="col-sm-1 control-label" for="email">メール</label>
+		  			<div class="col-sm-5">
+		  				<input type="text"  class="form-control" name="email" id="email" placeholder="">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="entry_ymd_s">出願日</label>
+	  				<div class="col-sm-5 form-inline">
+		  				<input type="text" class="form-control datepicker" id="entry_ymd_s" name="entry_ymd_s">&nbsp;から&nbsp;
+		  				<input type="text" class="form-control datepicker" id="entry_ymd_e" name="entry_ymd_e">
+		  			</div>
+		  			<label class="col-sm-1 control-label" for="torikesi_flg">取消</label>
+					<div class="col-sm-5">
+		  				<select class="form-control" name="torikesi_flg" id="torikesi_flg">
+				  			<option value="0" >除外する</option>
+				  			<option value="" >含む</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="nyukin_ymd_s">入金日</label>
+		  			<div class="col-sm-11 form-inline">
+		  				<input type="text" class="form-control datepicker" id="nyukin_ymd_s" name="nyukin_ymd_s">&nbsp;から&nbsp;
+		  				<input type="text" class="form-control datepicker" id="nyukin_ymd_e" name="nyukin_ymd_e">
+		  			</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="nyukin_stat">入金状況</label>
+					<div class="col-sm-3">
+		  				<select class="form-control" name="nyukin_stat" id="nyukin_stat">
+				  			<option value="" >指定なし</option>
+				  			<option value="0" >未入金</option>
+				  			<option value="1" >入金済み</option>
+						</select>
+					</div>
+					<div class="col-sm-1"></div>
+					<label class="col-sm-2 control-label" for="kesai_type_cd">決済方法</label>
+					<div class="col-sm-3">
+		  				<select class="form-control" name="kesai_type_cd" id="kesai_type_cd">
+				  			<option value="" >指定なし</option>
+				  			<option value="1" >クレジットカード</option>
+				  			<option value="2" >コンビニ</option>
+				  			<option value="3" >ATM</option>
+				  			<option value="4" >銀行</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+		  			<label class="col-sm-1 control-label" for="kana_simei_sei">カナ氏名</label>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="kana_simei_sei" id="kana_simei_sei" placeholder="セイ">
+					</div>
+		  			<div class="col-sm-4">
+		  				<input type="text"  class="form-control" name="kana_simei_mei" id="kana_simei_mei" placeholder="メイ">
+					</div>
+					<div class="col-sm-3">
+						<button type="submit" class="btn btn-default" id="page01Search">検索</button>
+					</div>
+				</div>
+				
+			</fieldset>
+
+			</div> <!--panel-body-->
+			</div> <!--panel collapse-->
+			</div> <!--panel-->
+		</form>
+		<form class="form-horizontal" id="page01form2" enctype="multipart/form-data">
+			<input type="hidden" id="nendo" name="nendo">
+
+			<div id="table_Tmpl"></div>
+				
+				<!-- jQuery Template -->
+			  	<script id="table_Script" type="text/x-jquery-tmpl">
+			  		<div class="form-group">
+						<div class="col-xs-4">
+							<a href="#" class="btn btn-default " id="export" download="netentry_export.csv">検索結果をCSV出力</a>
+						</div>
+						<div class="col-xs-4">
+							<a href="#" class="btn btn-default " id="page01Cancel">検索条件再指定</a>
+						</div>
+						<div class="col-xs-3"></div>
+					</div>
+					
+					<table class="table table-striped" id="page01Table">
+						<thead>
+							<tr class="active">
+								<th >整理番号</th>
+								<th >学部</th>
+								<th >試験区分</th>
+								<th >メールアドレス</th>
+								<th >氏名</th>
+								<th >生年月日</th>
+								<th >出願日時</th>
+								<th >支払方法</th>
+								<th >支払期限</th>
+								<th >入金状況</th>
+								<th >入金日</th>
+								<th >金額</th>
+								<th >取消</th>
+								<th style="display:none"></th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						{{each rows}}
+							<tr id=${password}>
+								<td > ${seiri_no}</td>
+								<td > ${gakubu}</td>
+								<td > ${siken}</td>
+								<td > <a href="#" class="send_mail">${email}</a></td>
+								<td > <a href="#" class="kojin_edit">${kana}</a></td>
+								<td > ${birthday}</td>
+								<td > ${entry_ymd}</td>
+								<td > ${kesai_type_nm}</td>
+								<td > ${nyukin_kigen}</td>
+								<td > <a href="#" class="nyukin_edit">${nyukin_stat_nm}</a></td>
+								<td > ${nyukin_ymd}</td>
+								<td > ${kesai_kingaku}</td>
+								<td > ${torikesi_flg}</td>
+								<td style="display:none"> ${mail_json}</td>
+							</tr>
+						{{/each}}
+							</tbody>
+					</table>
+
+				<!-- jQuery Template -->
+				</script>
+			
+		</form>
+		
+		</div> <!--row-->
+		</div> <!--container-->
+		</div> <!--page-->
+
+		<div id="dialogParts">
+			<!--DIALOG-->
+		</div>	
+		
+<div class="modal fade" id="nyukin_edit_modal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>入金状況を以下の内容に変更します。</p>
+  				<select class="form-control" name="nyukin_select_modal" id="nyukin_select_modal">
+		  			<option value="0" >未入金</option>
+		  			<option value="1" >入金済み</option>
+				</select>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+				<button type="button" class="btn btn-primary" id="nyukin_ok_modal">変更</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="send_mail_modal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>通知メールの種類を選択してください。</p>
+  				<select class="form-control" name="nyukin_select_modal" id="mail_select_modal">
+		  			<option value="mypage" >マイページ登録</option>
+		  			<option value="syutugan" >出願確認</option>
+		  			<option value="nyukin" >入金確認</option>
+		  			<option value="saisoku" >入金督促</option>
+				</select>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+				<button type="button" class="btn btn-primary" id="send_mail_ok_modal">送信</button>
+			</div>
+		</div>
+	</div>
+</div>
+		
+		
+</body>
+</html>

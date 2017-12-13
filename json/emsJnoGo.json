@@ -1,0 +1,12 @@
+{
+ "stat":"OK",
+ "result_list":[
+ {"seiri_no":"1001","seiri_seq":"01","juken_no":"15001","simei":"受験生０００１"},
+ {"seiri_no":"1002","seiri_seq":"01","juken_no":"15002","simei":"受験生０００２"},
+ {"seiri_no":"1003","seiri_seq":"01","juken_no":"15003","simei":"受験生０００３"},
+ {"seiri_no":"1004","seiri_seq":"01","juken_no":"15004","simei":"受験生０００４"},
+ {"seiri_no":"1005","seiri_seq":"01","juken_no":"15005","simei":"受験生０００５"},
+ {"seiri_no":"1006","seiri_seq":"01","juken_no":"15006","simei":"受験生０００６"}
+
+ ]
+}

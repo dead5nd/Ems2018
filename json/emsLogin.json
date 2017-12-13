@@ -1,0 +1,17 @@
+{
+ "stat":"OK",
+ "gakubu_cd":"2",
+ "kino_list":[
+  {"kino_id":"101"},
+  {"kino_id":"102"},
+  {"kino_id":"103"},
+  {"kino_id":"104"},
+  {"kino_id":"501"},
+  {"kino_id":"502"},
+  {"kino_id":"503"},
+  {"kino_id":"601"},
+  {"kino_id":"602"},
+  {"kino_id":"603"}
+ ],
+ "user_nm":"ログインユーザ名"
+}

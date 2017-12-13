@@ -1,0 +1,51 @@
+body { 
+	padding-top: 70px; 
+}
+
+a.cs-link {
+	color: #14B9CC !important;
+}
+label.has-error {
+	color: red;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+tr.cs-danger{ 
+	background-color: #FFE9F2 !important;
+}
+tr.cs-warning{ 
+	background-color: #FFFAAF !important;
+}
+tr.cs-info{ 
+	background-color: #C1E5E8 !important;
+}
+tr.cs-success{ 
+	background-color: #D7FFE4 !important;
+}
+tr.cs-active{ 
+	background-color: #FFEDEF !important;
+}
+tr.cs-title{ 
+	background-color: #F7F7F7 !important;
+}
+table.cs-fixedCol {
+	table-layout: fixed;
+}
+
+input.cs-warning{ 
+	background-color: #FFFAAF !important;
+}
+input.cs-title{ 
+	background-color: #F7F7F7 !important;
+}
+
+th.cs-center {
+	text-align:center;
+}
+td.cs-right {
+	text-align:right;
+}
+

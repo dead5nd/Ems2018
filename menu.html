@@ -1,0 +1,127 @@
+<!-- ################ メニュー ################ -->
+		<div id="globalMenu">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenu">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-text" href="./ems000Top.html"><div id="menuTitle">入試管理システム　　</div></a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="navbarMenu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ネット出願連携 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu0_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu0_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">書類受付 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu1_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu1_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">試験準備 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu2_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu2_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+												
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">メール <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu3_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu3_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">成績入力 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu4_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu4_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">合否判定 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu5_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu5_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">管理機能 <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<div id="menu6_Tmpl"></div>
+								<li><a href="#"><font color="white">＿＿＿＿＿＿＿＿＿＿＿</font></a></li>
+							</ul>
+							<!-- jQuery Template -->
+							<script id="menu6_Script" type="text/x-jquery-tmpl">
+								{{each rows}}
+										<li><a href="${url}">${name}</a></li>
+								{{/each}}
+							</script>
+							<!-- jQuery Template -->
+						</li>
+						
+					</ul>
+					<button type="button" class="btn btn-default navbar-btn navbar-right" id="menu_Logout" >ログアウト</button>
+					<p id="loginUserName" class="navbar-text navbar-right"></p>
+				</div>
+			</div>
+		</nav>
+		</div>

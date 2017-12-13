@@ -1,0 +1,22 @@
+{
+   "stat":"OK",
+   "srch_list":[
+   	 {"juken_no":"15001", "sotunen":"2017", "sch_rank":"13",
+   	  "chosa":{"評定平均":"4.4","欠席日数":"1"},
+   	  "q_list":[
+   	 	{"setumon_nm":"AR1", "score":"48"},
+   	 	{"setumon_nm":"AR2", "score":"50"},
+   	 	{"setumon_nm":"GD1", "score":"5"},
+   	 	{"setumon_nm":"GD2", "score":"5"}
+   	 ],
+   	  "k_list":[
+   	 	{"kamoku_nm_s":"英語", "ms_score":"", "score":"52"},
+   	 	{"kamoku_nm_s":"物理基礎", "ms_score":"", "score":""},
+   	 	{"kamoku_nm_s":"化学基礎", "ms_score":"", "score":"38"},
+   	 	{"kamoku_nm_s":"生物基礎", "ms_score":"", "score":""}
+   	 ]
+   	 
+   	 }
+  
+   ]
+}
