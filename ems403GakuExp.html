@@ -21,8 +21,8 @@
 		<script src="./jquery/jquery.blockUI.js"></script>
 		<script src="./jquery/autosize.min.js"></script>
 		<script src="./jquery/encoding.js"></script>
-		
-		<!-- bootstrap-datepicker 
+
+		<!-- bootstrap-datepicker
 		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
 		<script src="./jquery/bootstrap-datepicker.min.js"></script>
 		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
@@ -37,35 +37,35 @@
 
 		<link rel="stylesheet" href="./css/custom.css" />
 				
-		<script src="./js/settingcode.js?ver=20170323-1"></script>
-		<script src="./js/commoncode.js?ver=20170323-1"></script>
-		<script src="./js/cmnlogin.js?ver=20170323-1"></script>
-		<script src="./js/menuitem.js?ver=20170323-1"></script>
-		<script src="./js/cd.js?ver=20170323-1"></script>
-		<script src="./js/utf2sjis.js?ver=20170323-1"></script>
-		<script src="./js/cmncontrol.js?ver=20170323-1"></script>
-		
-		<script src="./js/ems403/ems403valid.js?ver=20170323-1"></script>
-		<script src="./js/ems403/ems403viewmodel.js?ver=20170323-1"></script>
-		<script src="./js/ems403/ems403control.js?ver=20170323-1"></script>
+		<script src="./js/settingcode.js?ver=20171213"></script>
+		<script src="./js/commoncode.js?ver=20171213"></script>
+		<script src="./js/cmnlogin.js?ver=20171213"></script>
+		<script src="./js/menuitem.js?ver=20171213"></script>
+		<script src="./js/cd.js?ver=20171213"></script>
+		<script src="./js/utf2sjis.js?ver=20171213"></script>
+		<script src="./js/cmncontrol.js?ver=20171213"></script>
+
+		<script src="./js/ems403/ems403valid.js?ver=20171213"></script>
+		<script src="./js/ems403/ems403viewmodel.js?ver=20171213"></script>
+		<script src="./js/ems403/ems403control.js?ver=20171213"></script>
 
 	</head>
 	<body>
-		
+
 		<div id="page01">
 		<div class="container">
 		<div class="row">
-		
+
 		<div id="menuParts">
 			<!--MENU-->
 		</div>
-		
+
 		<!-- ################ 入力画面 ################ -->
 		<form class="form-horizontal" id="page01form">
 			<div class="panel panel-primary">
 			<div class="panel-body">
 			<fieldset class="cs-search">
-			
+
 		  		<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
 		  			<div class="col-sm-5">
@@ -75,13 +75,13 @@
 				  				<select class="form-control" name="siken_cd" id="siken_cd">
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="mi_renkei"></label>
 		  			<div class="col-sm-2">
@@ -99,14 +99,14 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label"></label>
 					<div class="col-sm-2">
 						<button type="submit" class="btn btn-default" id="page01Commit" >対象検索</button>
 					</div>
 				</div>
-				
+
 			</fieldset>
 
 			</div> <!--panel-body-->
@@ -126,15 +126,15 @@
 
 		</form>
 
-		
+
 		</div> <!--row-->
 		</div> <!--container-->
 		</div> <!--page-->
 
 		<div id="dialogParts">
 			<!--DIALOG-->
-		</div>		
-		
-		
+		</div>
+
+
 </body>
 </html>
