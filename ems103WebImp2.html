@@ -22,37 +22,37 @@
 		<script src="./jquery/autosize.min.js"></script>
 		<script src="./jquery/sha256.js"></script>
 		<script src="./jquery/encoding.js"></script>
-		
+
 		<!-- bootstrap-datepicker -->
 		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
 		<script src="./jquery/bootstrap-datepicker.min.js"></script>
 		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
 
 		<link rel="stylesheet" href="./css/custom.css" />
-				
-		<script src="./js/settingcode.js?ver=20171109"></script>
-		<script src="./js/commoncode.js?ver=20171109"></script>
-		<script src="./js/cmnlogin.js?ver=20171109"></script>
-		<script src="./js/menuitem.js?ver=20171109"></script>
-		<script src="./js/cd.js?ver=20171109"></script>
-		<script src="./js/cmncontrol.js?ver=20171109"></script>
-		<script src="./js/utf2sjis.js?ver=20171109"></script>
-		
-		<script src="./js/ems103-2/ems103valid.js?ver=20171109"></script>
-		<script src="./js/ems103-2/ems103viewmodel.js?ver=20171109"></script>
-		<script src="./js/ems103-2/ems103control.js?ver=20171109"></script>
+
+		<script src="./js/settingcode.js?ver=20171218"></script>
+		<script src="./js/commoncode.js?ver=20171218"></script>
+		<script src="./js/cmnlogin.js?ver=20171218"></script>
+		<script src="./js/menuitem.js?ver=20171218"></script>
+		<script src="./js/cd.js?ver=20171218"></script>
+		<script src="./js/cmncontrol.js?ver=20171218"></script>
+		<script src="./js/utf2sjis.js?ver=20171218"></script>
+
+		<script src="./js/ems103-2/ems103valid.js?ver=20171218"></script>
+		<script src="./js/ems103-2/ems103viewmodel.js?ver=20171218"></script>
+		<script src="./js/ems103-2/ems103control.js?ver=20171218"></script>
 
 	</head>
 	<body>
-		
+
 		<div id="page01">
 		<div class="container">
 		<div class="row">
-		
+
 		<div id="menuParts">
 			<!--MENU-->
 		</div>
-		
+
 		<!-- ################ 入力画面 ################ -->
 
 		<div class="panel panel-primary">
@@ -67,7 +67,7 @@
 							<option value="" >指定なし</option>
 							{{each rows}}
 								<option value=${cd} > ${name} </option>
-							{{/each}}	
+							{{/each}}
 						</select>
 				</script>
 				<!-- jQuery Template -->
@@ -77,12 +77,17 @@
 	  			<input type="text" class="form-control datepicker" id="entry_date_s" name="entry_date_s">&nbsp;から&nbsp;
 	  			<input type="text" class="form-control datepicker" id="entry_date_e" name="entry_date_e">
 			</div>
-			
+
+			<div class="form-group form-inline">
+				<label class="col-sm-1 control-label" for="torihiki_id">整理番号</label>
+	  			<input type="text" class="form-control" id="torihiki_id" name="torihiki_id">
+			</div>
+
 			<div class="form-group form-inline">
 				<label class="col-sm-1 control-label" for="inportNetEntry"></label>
 				<button type="button" class="btn btn-default" id="inportNetEntry">インターネット出願データ取込</button>
 			</div>
-			
+
 		</form>
 		</div> <!--panel-body-->
 		</div> <!--panel-->
@@ -90,10 +95,10 @@
 		</div> <!--row-->
 		</div> <!--container-->
 		</div> <!--page-->
-	
+
 		<div id="dialogParts">
 			<!--DIALOG-->
-		</div>		
-		
+		</div>
+
 </body>
 </html>
