@@ -386,10 +386,10 @@
 
 
 	/**
-	 *
-     * 情報変更処理
-	 *
-     */
+		*
+  	* 情報変更処理
+	 	*
+    */
 	Ems500ViewModel.submit = function(form)
 	{
 
@@ -430,7 +430,22 @@
 		Ems500ViewModel.renkei['csv28'] = $("#center_seikyu_no").val();
 		sendData['all_json'] = JSON.stringify(Ems500ViewModel.renkei);
 
+		//インターネット出願システムの試験情報更新用SQLを組み立て
+		var sql = "call update_t_siken('i_torihiki_id', 'i_gakubu_cd', 'i_siken_cd', 'i_gakka_cd', 'i_buturi_ari', 'i_kagaku_ari', 'i_seibutu_ari', 'i_sikenti_1ji_cd', 'i_sikenti_2ji_cd', 'i_sikenbi_2ji', 'i_tiiki_ari', 'i_kokusai_menjyo', 'i_center_seikyu_no');"
 
+		sql = sql.replace('i_torihiki_id', Ems500ViewModel.seiri_no);
+		sql = sql.replace('i_gakubu_cd', Login.gakubuCd);
+		sql = sql.replace('i_siken_cd', Ems500ViewModel.siken_cd);
+		sql = sql.replace('i_gakka_cd', Ems500ViewModel.gakka_cd);
+		sql = sql.replace('i_buturi_ari', Ems500ViewModel.renkei['csv23']);
+		sql = sql.replace('i_kagaku_ari', Ems500ViewModel.renkei['csv24']);
+		sql = sql.replace('i_seibutu_ari', Ems500ViewModel.renkei['csv25']);
+		sql = sql.replace('i_sikenti_1ji_cd', Ems500ViewModel.renkei['csv16']);
+		sql = sql.replace('i_sikenti_2ji_cd', Ems500ViewModel.renkei['csv20']);
+		sql = sql.replace('i_sikenbi_2ji', Ems500ViewModel.renkei['csv19']);
+		sql = sql.replace('i_tiiki_ari', Ems500ViewModel.renkei['csv26']);
+		sql = sql.replace('i_kokusai_menjyo', Ems500ViewModel.renkei['csv27']);
+		sql = sql.replace('i_center_seikyu_no', Ems500ViewModel.renkei['csv28']);
 		//状態変更は同時にできないのでここでチェックする
 		var cnt = 0;
 		/*
@@ -465,8 +480,7 @@
 				success: function (data) {
 					// サーバからのデータを解析して表示する
 					if (data.stat == 'OK') {
-						cmncode.dlg.alertMessage('確認', stngcode.msg.ems500end1);
-
+						Ems500ViewModel.updateInetSiken(sql);
 					} else {
 						cmncode.dlg.alertMessage('エラー', data.err_msg);
 					}
@@ -726,5 +740,48 @@
 
 		return timeDiff;
 
+	};
+
+	/**
+ 		*
+		* インターネット出願システムの試験情報を更新
+	 	*
+    */
+	Ems500ViewModel.updateInetSiken = function(sql)
+	{
+
+		// 送信情報を取得
+		var sendData = {};
+
+		sendData['sql'] = sql;
+
+		var reqdate = cmncode.getTimeStr();
+		sendData['email'] = stngcode.inet.Email;
+		sendData['reqdate'] = reqdate;
+		sendData['hash'] = cmncode.getLoginHash( stngcode.inet.Email, reqdate, stngcode.inet.Token );
+
+		$.ajax({
+			url:stngcode.inet.inetHanyoUrl,
+			type: 'post',
+			//contentType: false,
+			timeout: stngcode.ajax.timeOut,
+			data: sendData,
+			dataType: 'json',
+			//jsonpCallback: 'callback',
+			success: function (data) {
+				// サーバからのデータを解析して表示する
+				if (data.stat == 'OK') {
+					cmncode.dlg.alertMessage('確認', stngcode.msg.ems500end1);
+				} else {
+					cmncode.dlg.alertMessage('エラー', data.err_msg);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
+			},
+			complete: function() {
+				cmncode.dlg.hideLoading();
+			}
+		});
 	};
 })();
