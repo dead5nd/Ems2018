@@ -20,12 +20,12 @@
 		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
 		<script src="./jquery/jquery.blockUI.js"></script>
 		<script src="./jquery/autosize.min.js"></script>
-		
-		<!-- bootstrap-datepicker 
+
+		<!-- bootstrap-datepicker -->
 		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
 		<script src="./jquery/bootstrap-datepicker.min.js"></script>
 		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
-		-->
+
 
 		<!-- Data Tables -->
 		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
@@ -35,37 +35,44 @@
 		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
 
 		<link rel="stylesheet" href="./css/custom.css" />
-				
-		<script src="./js/settingcode.js?ver=20170323-1"></script>
-		<script src="./js/commoncode.js?ver=20170323-1"></script>
-		<script src="./js/cmnlogin.js?ver=20170323-1"></script>
-		<script src="./js/menuitem.js?ver=20170323-1"></script>
-		<script src="./js/cd.js?ver=20170323-1"></script>
-		<script src="./js/cmncontrol.js?ver=20170323-1"></script>
-		
-		<script src="./js/ems107/ems107valid.js?ver=20170323-1"></script>
-		<script src="./js/ems107/ems107viewmodel.js?ver=20170323-1"></script>
-		<script src="./js/ems107/ems107control.js?ver=20170323-1"></script>
+
+		<script src="./js/settingcode.js?ver=20171226"></script>
+		<script src="./js/commoncode.js?ver=20171226"></script>
+		<script src="./js/cmnlogin.js?ver=20171226"></script>
+		<script src="./js/menuitem.js?ver=20171226"></script>
+		<script src="./js/cd.js?ver=20171226"></script>
+		<script src="./js/cmncontrol.js?ver=20171226"></script>
+
+		<script src="./js/ems107/ems107valid.js?ver=20171226"></script>
+		<script src="./js/ems107/ems107viewmodel.js?ver=20171226"></script>
+		<script src="./js/ems107/ems107control.js?ver=20171226"></script>
 
 	</head>
 	<body>
-		
+
 		<div id="page01">
 		<div class="container">
 		<div class="row">
-		
+
 		<div id="menuParts">
 			<!--MENU-->
 		</div>
-		
+
 		<!-- ################ 入力画面 ################ -->
 		<form class="form-horizontal" id="page01form">
 			<div class="panel panel-primary">
 			<div class="panel-body">
 			<fieldset class="cs-search">
-			
-		  		<div class="form-group">
-		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="date_from">書類確認日</label>
+						<div class="col-sm-5 form-inline">
+							<input type="text" class="form-control datepicker" id="date_from" name="date_from">&nbsp;から&nbsp;
+							<input type="text" class="form-control datepicker" id="date_to" name="date_to">
+						</div>
+					</div>
+					<div class="form-group">
+		  			<label class="col-sm-2 control-label" for="siken_cd">試験区分</label>
 		  			<div class="col-sm-5">
 			  			<div id="siken_Tmpl"></div>
 			  			<!-- jQuery Template -->
@@ -74,7 +81,7 @@
 				  				<option value="" >指定なし</option>
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
@@ -83,24 +90,24 @@
 						<button type="submit" class="btn btn-default" id="page01Commit" >受付状況更新</button>
 					</div>
 				</div>
-				
+
 			</fieldset>
 
 			</div> <!--panel-body-->
 			</div> <!--panel-->
-			
+
 
 		</form>
 
-		
+
 		</div> <!--row-->
 		</div> <!--container-->
 		</div> <!--page-->
 
 		<div id="dialogParts">
 			<!--DIALOG-->
-		</div>		
-		
-		
+		</div>
+
+
 </body>
 </html>

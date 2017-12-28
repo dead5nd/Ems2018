@@ -1,4 +1,4 @@
-/** 
+/**
 * @fileOverview Ems104画面表示・ビジネスロジック
 * @author FiT
 * @version 1.0.0
@@ -8,13 +8,13 @@
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Ems104ViewModel = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 画面生成時の初期処理
@@ -25,8 +25,8 @@
 		var code = Login.gakubuCd;
 		cmncode.template.bind("siken_Script", {"rows": cd.siken[code]} , "siken_Tmpl");
 		$("#downloadMessage").hide();
-	};	
-	
+	};
+
 	/**
 	 *
      * Submit処理
@@ -37,13 +37,13 @@
 
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems104prog1);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		sendData['nendo'] = cmncode.getNendo();
 		sendData['gakubu_cd'] = Login.gakubuCd;
 		sendData['siken_cd'] = $("#siken_cd").val();
-	
+
 		$.ajax({
 			url:stngcode.ajax.webExpUrl,
 			type: 'post',
@@ -68,7 +68,7 @@
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -79,24 +79,24 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-		
-	};	
+		});
+
+	};
 
 	/**
 	 *
      * 入試管理から抽出した受験番号情報を編集してインターネット出願へ連携する
-	 * 
+	 *
 	 * @parameter list1[] 送信対象情報リスト
      */
 	Ems104ViewModel.export = function(list)
 	{
-		
+
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems104prog2);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		var siken_list = [];
 		for (var i=0; i < list.length; i++) {
 			var obj = {};
@@ -108,16 +108,17 @@
 			obj['gakka_cd'] = str.substr(1,1);
 			obj['juken_no'] = list[i]['juken_no'];
 			obj['uketuke_stat'] = list[i]['uketuke_stat'];
+			//ToDo: obj['kaijo_guide'] = list[i]['floor_nm'] + ' ' + list[i]['sikenjo_nm'];
 			//以下はここでは設定しない
 			obj['gohi_stat'] = '';
 			obj['seiseki_json'] = '';
 			siken_list.push(obj);
 		}
 		sendData['siken_list'] = JSON.stringify(siken_list);
-		
+
 		//処理件数表示用
 		var syori = list.length;
-	
+
 		$.ajax({
 			url:stngcode.inet.inetDiffGetUrl,
 			type: 'post',
@@ -128,7 +129,7 @@
 			success: function (data) {
 				// サーバからのデータを解析して表示する
 				if (data.stat == 'OK') {
-						cmncode.dlg.alertMessageCB('確認', syori + stngcode.msg.ems104end, 
+						cmncode.dlg.alertMessageCB('確認', syori + stngcode.msg.ems104end,
 							function (){
 								location.reload();
 							}
@@ -138,7 +139,7 @@
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -151,6 +152,6 @@
 			}
 		});
 	};
-	
-	
+
+
 })();

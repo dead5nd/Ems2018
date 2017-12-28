@@ -1,4 +1,4 @@
-/** 
+/**
  * @fileOverview 共通で使用される機能を定義します
  * @author FiT
  * @version 1.0.0
@@ -13,7 +13,7 @@
 
 	/**
 	 * クラスの継承機能を提供します。
-	 * 
+	 *
 	 * @param {Object}		derive		継承先インスタンス
 	 * @param {Object}		base		継承元クラス名
 	 * @param {Object[]}	baseArgs	継承元クラス
@@ -30,10 +30,10 @@
 	};
 	/**
 	 * 実施年度の年度数字取得
-	 * 
+	 *
 	 * @return 実施年度の数字
 	 *
-	 */	
+	 */
 	cmncode.getNendo = function ()
 	{
 		var now = new Date();
@@ -45,7 +45,7 @@
 			nendo = year + 1;
 		}
 		return String(nendo);
-		
+
 		/*
 		// 過去年度動作モードになっている場合にはそれに従う
 		if (stngcode.sysNendo == 0) {
@@ -53,35 +53,35 @@
 		} else {
 			return stngcode.sysNendo;
 		}*/
-		
-		
+
+
 	};
 
 	/**
 	 * 英数字を全角→半角変換する
-	 * 
+	 *
 	 * @param  {String} str	対象文字
 	 * @return {String} 変換後文字
 	 *
-	 */	
+	 */
 	cmncode.strToHalf = function (str)
 	{
 		var retStr;
-		
+
 		retStr = str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
 			return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
 		});
-		
+
 		return retStr;
 	};
-	
+
 	/**
 	 * カタカナを全角→半角変換する
-	 * 
+	 *
 	 * @param  {String} str	対象文字
 	 * @return {String} 変換後文字
 	 *
-	 */	
+	 */
 	cmncode.kanaToHalf = function (str)
 	{
 		var befkana = new Array("ア","イ","ウ","エ","オ","カ","キ","ク","ケ","コ",
@@ -106,7 +106,7 @@
 		var aftsoku = new Array("ｱ","ｲ","ｳ","ｴ","ｵ","ﾂ","ﾔ","ﾕ","ﾖ");
  		var bef = befkana;
  		var aft = aftkana;
-		
+
 		for (i = 0; i < aftdaku.length; i++) {
 			reg = new RegExp(befdaku[i],"g");
 			str = str.replace(reg, aftdaku[i]);
@@ -119,33 +119,33 @@
  			reg = new RegExp(befsoku[i],"g");
  			str = str.replace(reg, aftsoku[i]);
  		}
- 		
+
 		return str;
 	};
-	
+
 	/**
 	 * URLデコード処理
-	 * 
+	 *
 	 * @param  {String} encodeURI	エンコードされたURI
 	 * @return {String} デコードされたURI
 	 *
-	 */	
+	 */
 	cmncode.decodeURI = function (encodeURI)
 	{
 		try {
 			return decodeURI(encodeURI);
-			
+
 		} catch(error) {
 			return '???';
 		}
-		
+
 	};
-	
+
 	/**
 	 *
 	 * yyyy/mm/dd形式での本日日付取得
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.getToday = function ()
 	{
 		var p = function(num) {
@@ -157,48 +157,48 @@
 	/**
 	 *
 	 * 現在日時の取得 yyyymmddhhmmss
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.getTimeStr = function ()
 	{
 		var today = new Date();
-	  
+
 		var year = today.getFullYear().toString();
 		var month = ("0" + (today.getMonth() + 1)).slice(-2);
 		var day = ("0" + today.getDate()).slice(-2);
-		
+
 		var hh = ("0" + today.getHours()).slice(-2);
 		var mm = ("0" + today.getMinutes()).slice(-2);
 		var ss = ("0" + today.getSeconds()).slice(-2);
-		
+
 		var hiduke = year + month + day;
 		var jikoku = hh + mm + ss;
 		var resp = hiduke + jikoku;
-		
+
 		return resp;
 	};
-	
+
 	/**
 	 *
 	 * 現在日時の取得 yyyy/mm/dd hh:mm:ss
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.getTime = function ()
 	{
 		var today = new Date();
-	  
+
 		var year = today.getFullYear().toString();
 		var month = ("0" + (today.getMonth() + 1)).slice(-2);
 		var day = ("0" + today.getDate()).slice(-2);
-		
+
 		var hh = ("0" + today.getHours()).slice(-2);
 		var mm = ("0" + today.getMinutes()).slice(-2);
 		var ss = ("0" + today.getSeconds()).slice(-2);
-		
+
 		var hiduke = year + "/" + month + "/" + day;
 		var jikoku = hh + ":" + mm + ":" + ss;
 		var resp = hiduke + " " + jikoku;
-		
+
 		return resp;
 	};
 	/**
@@ -206,26 +206,26 @@
 	 * 日付の編集 dd/mm/yyyy ⇒ yyyy/mm/dd
 	 * @parameter i_str 変換前文字
 	 * @return 変換後文字
-	 */	
+	 */
 	cmncode.mdy2ymd = function (i_str)
 	{
 		var resp = '';
 		var tmp = i_str.split(' '); //空白除く
 		var str = tmp[0];
-		
+
 		if (str) {
 			var datas = str.split('/');
 			var d0 = ("0" + datas[0]).slice(-2); //day
 			var d1 = ("0" + datas[1]).slice(-2); //month
 			var d2 = datas[2]; //year
-			
+
 			if (d0.length < d2.length) {
 				//入替する
 				resp = d2+ '/' + d0 + '/' + d1;
 			} else {
 				//何もしないでそのまま返す
 				resp = str;
-				
+
 			}
 		}
 		return resp;
@@ -235,35 +235,49 @@
 	 * 日付の編集 yyyy/mm ⇒ yyyy/mm/01
 	 * @parameter i_str 変換前文字
 	 * @return 変換後文字
-	 */	
+	 */
 	cmncode.ym2ymd = function (i_str)
 	{
 		var resp = '';
-		
+
 		if (i_str) {
 			if (i_str.length < 8) {
 				resp = i_str + '/01'
 			} else {
 				//何もしないでそのまま返す
 				resp = i_str;
-				
+
 			}
 		}
 		return resp;
 	};
 	/**
 	 *
+	 * yyyy/mm/dd形式での本日より指定日前の日付取得
+	 * @parameter d 差分日
+	 *
+	 */
+	cmncode.getDateSub = function (d)
+	{
+		var p = function(num) {
+    		return ((num + "").length == 1) ? "0" + num : num;
+  		}
+		var now = new Date();
+		return now.getFullYear() + '/' + p(now.getMonth()+1) + '/' +p(now.getDate() - d);
+	};
+	/**
+	 *
 	 * 数字文字列をカンマ編集する
 	 *
-	 */	
+	 */
 	cmncode.toComma = function (num)
 	{
 		var resp = num.toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,') + '円';
 		//var resp = num.toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,');
-		
+
 		return resp;
 	};
-	
+
 	/**
 	 *
      * 認証用ハッシュ文字列取得
@@ -275,47 +289,47 @@
      */
 	cmncode.getLoginHash = function(email, reqdate, token)
 	{
-		
+
 		var str_key = token + reqdate + email;
-		
+
 		var shaObj = new jsSHA("SHA-256", "TEXT");
 		shaObj.update(str_key);
 		var hash = shaObj.getHash("HEX");
-		
+
 		return hash;
-		
-	};	
-	
+
+	};
+
 	/**
 	 *
 	 * datepicker初期処理呼び出し
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.datepickerInit = function ()
 	{
 		// 本日日付をセットする
 		$("#jissibi").val( cmncode.getToday );
-		
+
 		// datepicker処理
 		$('.datepicker').datepicker({
 	        format: 'yyyy/mm/dd',
 	        language: 'ja',
 			autoclose: true
 		 });
-		
-		
-		
-		
-	};	
-	
+
+
+
+
+	};
+
 	/**
 	 *
 	 * DataTable初期処理呼び出し
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.dataTablesInit = function (sort_enable, opt_sort_col)
 	{
-		
+
 		var col = opt_sort_col === undefined ? 0 : opt_sort_col;
 		$('#page01Table').DataTable({
 			searching: false,
@@ -323,20 +337,20 @@
 			fixedHeader: true,
 			scrollY: 530,
 			order:[[col,'asc']],
-			displayLength: 50, 
+			displayLength: 50,
 			language: {
 				url: stngcode.dataTableJpnUrl
-			} 
+			}
 		});
-		
-		
-	};	
-	
+
+
+	};
+
 	/**
 	 *
 	 * 受験番号の学部別処理（６桁にする）
 	 * 医療科学部は６桁運用
-	 */	
+	 */
 	cmncode.jnoToFull = function (short_jno)
 	{
 		var full_jno = short_jno;
@@ -349,15 +363,15 @@
 				full_jno = '50' + short_jno;
 			}
 		}
-		
+
 		return full_jno;
-	};	
-	
+	};
+
 	/**
 	 *
 	 * 受験番号の学部別処理(運用桁にする）
 	 * 医療科学部は６桁運用
-	 */	
+	 */
 	cmncode.jnoToShort = function (full_jno)
 	{
 		var short_jno = full_jno;
@@ -370,15 +384,15 @@
 				short_jno = full_jno.substring(2,6);
 			}
 		}
-		
+
 		return short_jno;
 	};
-	 	
+
 	 /**
 	 *
 	 * 整理番号11桁を9桁にする
 	 *
-	 */	
+	 */
 	cmncode.seiriToShort = function (full_seiri_no)
 	{
 		var short_seiri_no = full_seiri_no;
@@ -386,15 +400,15 @@
 		if (short_seiri_no.length == 11) {
 			short_seiri_no = full_seiri_no.substring(0,9);
 		}
-		
+
 		return short_seiri_no;
-	};		
-	
+	};
+
 	/**
 	 *
 	 * 受験番号の先頭２桁取得
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.getJnoTop2 = function ()
 	{
 		var top2;
@@ -405,16 +419,16 @@
 		} else if (Login.gakubuCd == stngcode.KANSEN) { //看護専門学校
 			top2 = '50';
 		}
-		
+
 		return top2;
-	};	
-	 	
+	};
+
 	/**
 	 *
 	 * 試験区分による1次、2次選択の有無
 	 * @param siken_cd 試験区分コード
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.check2ji = function (siken_cd)
 	{
 		var ret;
@@ -429,15 +443,15 @@
 		} else if (Login.gakubuCd == stngcode.KANSEN) { //看護専門学校
 			ret = false;
 		}
-		
+
 		return ret;
-	};	
+	};
 	/**
 	 *
 	 * 試験区分による1次、2次試験地の判断
 	 * @param siken_cd 試験区分コード
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.sikenti2ji = function (siken_cd)
 	{
 		var ret = false;
@@ -445,16 +459,16 @@
 			if (siken_cd = '5') { //センター後期
 				ret = true;
 			}
-		} 
-		
+		}
+
 		return ret;
-	};	
+	};
 	/**
 	 *
 	 * 試験区分による地域枠、一般枠選択の有無
 	 * @param siken_cd 試験区分コード
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.checkWaku = function (siken_cd)
 	{
 		var ret;
@@ -469,21 +483,21 @@
 		} else if (Login.gakubuCd == stngcode.KANSEN) { //看護専門学校
 			ret = false;
 		}
-		
+
 		return ret;
-	};	
+	};
 
 	 /**
 	 *
 	 * 配列内のscoreを小数点以下無の表記に変更
 	 * @param list[] 対象が格納されたオブジェクト配列
 	 * @return 編集後
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.scoreToInt = function (list)
 	{
 		var score;
-		
+
 		for (var i = 0; i < list.length; i++) {
 			if ('ms_score' in list[i]) {
 				score = cmncode.floatToInt(list[i]['ms_score']);
@@ -498,32 +512,32 @@
 				list[i]['total_score'] = score;
 			}
 		}
-		
+
 		return list;
-	};	
-	 	
+	};
+
 	/**
 	 *
 	 * 小数点以下無の表記に変更
 	 * @param floatVal 小数点付文字列
 	 * @return 編集後
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.floatToInt = function (floatVal)
 	{
 		var ret;
 		ret = floatVal.replace(/\.?0+$/, "");
-		
+
 		return ret;
-	};	
-	 	
+	};
+
 	 /**
 	 *
 	 * 配列内のms_scoreをscoreに入れる(センター試験成績表示のため）
 	 * @param list[] 対象が格納されたオブジェクト配列
 	 * @return 編集後
-	 * 
-	 */	
+	 *
+	 */
 	cmncode.changeScore = function (list)
 	{
 		for (var i = 0; i < list.length; i++) {
@@ -532,10 +546,10 @@
 				list[i]['ms_score'] = '';
 			}
 		}
-		
+
 		return list;
-	};	
-	 	
+	};
+
 	/**
 	 * @namespace JQuery Templateによる要素のレンダリング機能を提供します。
 	 */
@@ -581,12 +595,12 @@
 	*/
 	cmncode.dlg.showLoading = function (message)
 	{
-		$.blockUI({ 
+		$.blockUI({
 			message: '<img src="./img/loading.gif" />　' + message ,
-			css: { 
-			border: 'none', 
-			'-webkit-border-radius': '10px', 
-			'-moz-border-radius': '10px', 
+			css: {
+			border: 'none',
+			'-webkit-border-radius': '10px',
+			'-moz-border-radius': '10px',
 			padding: '20px'}
 		});
 	};
@@ -598,7 +612,7 @@
 	{
 		$.unblockUI();
 	};
-	
+
 	/**
 	* メッセージ画面処理(画面遷移なし）
 	* @param {String} title タイトル
@@ -615,7 +629,7 @@
 			}
 		);
 	};
-	
+
 	/**
 	* メッセージ画面処理(OK時にコールバック）
 	* @param {String} title タイトル
@@ -628,13 +642,13 @@
 		document.getElementById("alertModalTitleCB").innerHTML = title;
 		document.getElementById("alertModalMessageCB").innerHTML = msgAfter;
 		$("#alertModalCB").on('show.bs.modal', function (event) {
-				
-			$("#alertModalOK").unbind('click'); 
+
+			$("#alertModalOK").unbind('click');
 			$("#alertModalOK").bind('click', function (event)
 			{
 				$("#alertModalCB").modal('hide');
 				callBack();
-				
+
 			});
 		});
 		$("#alertModalCB").modal(
@@ -643,7 +657,7 @@
 			}
 		);
 	};
-		
+
 	/**
 	* 確認画面処理(OK時にコールバック）
 	* @param {String} title タイトル
@@ -661,13 +675,13 @@
 		document.getElementById("confModalMessage").innerHTML = msgAfter;
 
 		$("#confModal").on('show.bs.modal', function (event) {
-				
-			$("#confModalOK").unbind('click'); 
+
+			$("#confModalOK").unbind('click');
 			$("#confModalOK").bind('click', function (event)
 			{
 				$("#confModal").modal('hide');
 				callBack();
-				
+
 			});
 		});
 		$("#confModal").modal(
@@ -695,21 +709,21 @@
 		document.getElementById("confModalMessageCB").innerHTML = msgAfter;
 
 		$("#confModalCB").on('show.bs.modal', function (event) {
-				
-			$("#confModalOKCB").unbind('click'); 
+
+			$("#confModalOKCB").unbind('click');
 			$("#confModalOKCB").bind('click', function (event)
 			{
 				$("#confModalCB").modal('hide');
 				callBackOK();
-				
+
 			});
 
-			$("#confModalNGCB").unbind('click'); 
+			$("#confModalNGCB").unbind('click');
 			$("#confModalNGCB").bind('click', function (event)
 			{
 				$("#confModalCB").modal('hide');
 				callBackNG();
-				
+
 			});
 		});
 		$("#confModalCB").modal(
@@ -718,7 +732,7 @@
 			}
 		);
 	};
-		
+
 	/**
 	* エクスポート確認画面処理(OK時とNG時にコールバック）
 	* @param {String} title タイトル
@@ -737,21 +751,21 @@
 		document.getElementById("confModalMessageCB2").innerHTML = msgAfter;
 
 		$("#confModalCB2").on('show.bs.modal', function (event) {
-				
-			$("#confModalOKCB2").unbind('click'); 
+
+			$("#confModalOKCB2").unbind('click');
 			$("#confModalOKCB2").bind('click', function (event)
 			{
 				$("#confModalCB2").modal('hide');
 				callBackOK();
-				
+
 			});
 
-			$("#confModalNGCB2").unbind('click'); 
+			$("#confModalNGCB2").unbind('click');
 			$("#confModalNGCB2").bind('click', function (event)
 			{
 				$("#confModalCB2").modal('hide');
 				callBackNG();
-				
+
 			});
 		});
 		$("#confModalCB2").modal(
@@ -760,6 +774,5 @@
 			}
 		);
 	};
-		
-})();
 
+})();

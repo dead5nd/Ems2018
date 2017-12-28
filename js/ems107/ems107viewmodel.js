@@ -1,4 +1,4 @@
-/** 
+/**
 * @fileOverview Ems107画面表示・ビジネスロジック
 * @author FiT
 * @version 1.0.0
@@ -8,13 +8,13 @@
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Ems107ViewModel = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 画面生成時の初期処理
@@ -25,8 +25,15 @@
 		var code = Login.gakubuCd;
 		cmncode.template.bind("siken_Script", {"rows": cd.siken[code]} , "siken_Tmpl");
 		$("#downloadMessage").hide();
-	};	
-	
+
+		//日付の初期値をセット
+		$("#date_from").val( cmncode.getDateSub(7) );
+		$("#date_to").val( cmncode.getToday() );
+
+		// Data Picker初期化
+		cmncode.datepickerInit(true);
+	};
+
 	/**
 	 *
      * Submit処理
@@ -37,17 +44,21 @@
 
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems107prog1);
-		
+
 		// 送信情報を取得
-		var sql = "EXECUTE [db_owner].[SelectUketuke] N'gakubu_cd', N'siken_cd'";
+		var sql = "EXECUTE [db_owner].[SelectUketuke] N'gakubu_cd', N'siken_cd' , N'date_from', N'date_to'";
 		var sendData = {};
 		var siken_cd = $("#siken_cd").val();
+		var date_from = $("#date_from").val();
+		var date_to = $("#date_to").val();
 		var gakubu_cd = Login.gakubuCd;
-		
+
 		sql = sql.replace('gakubu_cd', gakubu_cd);
 		sql = sql.replace('siken_cd', siken_cd);
+		sql = sql.replace('date_from', date_from);
+		sql = sql.replace('date_to', date_to);
 		sendData['sql'] = sql;
-	
+
 		$.ajax({
 			url:stngcode.ajax.cmnSrchUrl,
 			type: 'post',
@@ -68,7 +79,7 @@
 				} else {
 					cmncode.dlg.alertMessage('エラー', data.err_msg);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -76,24 +87,24 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-		
-	};	
+		});
+
+	};
 
 	/**
 	 *
      * 入試管理から抽出した受付情報を編集してインターネット出願へ連携する
-	 * 
+	 *
 	 * @parameter list1[] 送信対象情報リスト
      */
 	Ems107ViewModel.export = function(list)
 	{
-		
+
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems107prog2);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		var siken_list = [];
 		for (var i=0; i < list.length; i++) {
 			var obj = {};
@@ -108,13 +119,14 @@
 			obj['juken_no'] = '';
 			obj['gohi_stat'] = '';
 			obj['seiseki_json'] = '';
+			//ToDo: obj['kaijo_guide'] = '';
 			siken_list.push(obj);
 		}
 		sendData['siken_list'] = JSON.stringify(siken_list);
-		
+
 		//処理件数表示用
 		var syori = list.length;
-	
+
 		$.ajax({
 			url:stngcode.inet.inetDiffGetUrl,
 			type: 'post',
@@ -125,7 +137,7 @@
 			success: function (data) {
 				// サーバからのデータを解析して表示する
 				if (data.stat == 'OK') {
-						cmncode.dlg.alertMessageCB('確認', syori + stngcode.msg.ems107end, 
+						cmncode.dlg.alertMessageCB('確認', syori + stngcode.msg.ems107end,
 							function (){
 								location.reload();
 							}
@@ -135,7 +147,7 @@
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -148,6 +160,6 @@
 			}
 		});
 	};
-	
-	
+
+
 })();
