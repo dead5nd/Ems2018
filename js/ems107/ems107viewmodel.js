@@ -119,7 +119,7 @@
 			obj['juken_no'] = '';
 			obj['gohi_stat'] = '';
 			obj['seiseki_json'] = '';
-			//ToDo: obj['kaijo_guide'] = '';
+			obj['kaijo_guide'] = '';
 			siken_list.push(obj);
 		}
 		sendData['siken_list'] = JSON.stringify(siken_list);

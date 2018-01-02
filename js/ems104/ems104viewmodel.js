@@ -108,7 +108,7 @@
 			obj['gakka_cd'] = str.substr(1,1);
 			obj['juken_no'] = list[i]['juken_no'];
 			obj['uketuke_stat'] = list[i]['uketuke_stat'];
-			//ToDo: obj['kaijo_guide'] = list[i]['floor_nm'] + ' ' + list[i]['sikenjo_nm'];
+			obj['kaijo_guide'] = list[i]['floor_nm'] + ' ' + list[i]['sikenjo_nm'];
 			//以下はここでは設定しない
 			obj['gohi_stat'] = '';
 			obj['seiseki_json'] = '';

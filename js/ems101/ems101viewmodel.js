@@ -1,8 +1,8 @@
-/** 
+/**
 * @fileOverview Ems101画面表示・ビジネスロジック
 * @author FiT
 * @version 1.0.0
-* 
+*
 * 2017/5/3 検索条件の追加
 *          名前/受験番号/試験会場/終了整理番号の追加
 *
@@ -13,13 +13,13 @@
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Ems101ViewModel = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 画面生成時の初期処理
@@ -36,12 +36,12 @@
 		//>>
 		// Data Picker初期化
 		cmncode.datepickerInit(true);
-		
+
 		//受付状況の初期選択を書類未着にする
 		$("#uketuke_stat").val('0');
 
-	};	
-	
+	};
+
 	//<<2017/5/3
 	/**
 	 *
@@ -50,13 +50,13 @@
      */
 	Ems101ViewModel.sikentiSelect = function()
 	{
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		sendData['gakubu_cd'] = Login.gakubuCd;
 		sendData['siken_cd'] = $("#siken_cd").val();
 		sendData['gakka_cd'] = $("#gakka_cd").val();
-		
+
 		$.ajax({
 			url:stngcode.ajax.getSikentiUrl,
 			type: 'post',
@@ -82,10 +82,10 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-	};	
+		});
+	};
 	//>>
-	
+
 	/**
 	 *
      * Search処理
@@ -96,9 +96,9 @@
 
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems101prog1);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		sendData['nendo'] = cmncode.getNendo();
 		sendData['gakubu_cd'] = Login.gakubuCd;
 		sendData['siken_cd'] = $("#siken_cd").val();
@@ -107,7 +107,7 @@
 		sendData['uketuke_stat'] = $("#uketuke_stat").val();
 		sendData['check_bi'] = $("#check_bi").val();
 		sendData['ok_bi'] = $("#ok_bi_srch").val();
-		
+
 		//<<2017/5/3
 		sendData['sikenti_cd'] = $("#sikenti_cd").val();
 		sendData['s_no_end'] = $("#seiri_no_end").val();
@@ -115,7 +115,7 @@
 		sendData['kanji_simei'] = $("#kanji_simei").val();
 		sendData['kana_simei'] = $("#kana_simei").val();
 		//>>
-	
+
 		$.ajax({
 			url:stngcode.ajax.entChkUrl,
 			type: 'post',
@@ -139,31 +139,31 @@
 							fixedHeader: true,
 							scrollY: 530,
 							order:[[0,'asc']],
-							displayLength: 50, 
+							displayLength: 50,
 							columnDefs: [ {
 						      targets: [4,6,9],
 						      orderable: false
 		   					 } ],
 							language: {
 								url: stngcode.dataTableJpnUrl
-							} 
+							}
 						});
-						
+
 						// Date Picker再初期化
 						cmncode.datepickerInit(true);
-						
+
 						//一覧初期設定
 						Clist.init();
-						
+
 						//変更監視
 						Ems101ViewModel.setChangeEvent();
-							
+
 						//フォーカス移動設定
 						Ems101ViewModel.setFocusMove();
-							
+
 						// 検索画面閉じる
 						$("#searchAccCollapse").collapse('hide');
-							
+
 					} else {
 						cmncode.dlg.alertMessage('確認', stngcode.msg.notFound);
 						// 検索条件入力有効
@@ -175,7 +175,7 @@
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -186,9 +186,9 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-		
-	};	
+		});
+
+	};
 	/**
 	 *
      * 検索結果一覧の中で受験番号の桁数を学部仕様にする
@@ -220,14 +220,16 @@
 				Clist.data[i]['M'] = stngcode.UKETUKE['NG']['name'];
 			} else if (Clist.data[i]['uketuke_stat'] == stngcode.UKETUKE['CAN']['cd']) {
 				Clist.data[i]['M'] = stngcode.UKETUKE['CAN']['name'];
+			} else if (Clist.data[i]['uketuke_stat'] == stngcode.UKETUKE['OK2']['cd']) {
+				Clist.data[i]['M'] = stngcode.UKETUKE['OK2']['name'];
 			} else {
 				Clist.data[i]['M'] = '';
-			} 
-			
+			}
+
 			//管理用
 			Clist.data[i]['seq'] = i;
 			Clist.data[i]['upd'] = '';
-			
+
 		}
 	};
 	/**
@@ -238,8 +240,8 @@
 	Ems101ViewModel.setFocusMove = function()
 	{
 		var target = "input[name=uketuke_stat]";
-		
-		
+
+
 		//対象欄はEnterでフォーカス移動を行う
 		$(document).off("keydown", target);
 		$(document).on("keydown", target, function(e) {
@@ -256,10 +258,10 @@
 		      	$(target + ":lt(" + index + "):last").focus();
 		      	e.preventDefault();
 				break;
-		    } 
+		    }
 	  	});
-	
-	};		
+
+	};
 
 	/**
 	 *
@@ -270,12 +272,12 @@
 	{
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems101prog2);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		sendData['nendo'] = cmncode.getNendo();
 		sendData['uketuke_list'] = Clist.sendData(); //送信対象をJSON形式で設定
-		
+
 		$.ajax({
 			url:stngcode.ajax.entChkRegUrl,
 			type: 'post',
@@ -292,7 +294,7 @@
 				} else {
 					cmncode.dlg.alertMessage('エラー', data.err_msg);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -301,9 +303,9 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-	};			
-	
+		});
+	};
+
 	/**
 	 *
      * 調査書形式CSV出力処理
@@ -312,7 +314,7 @@
 	Ems101ViewModel.export = function()
 	{
 		//var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-		
+
 		//
 		// 可変タイトル数の取得
 		//
@@ -320,7 +322,7 @@
 		//医療科学部向け
 		if (Login.gakubuCd == '2') {
 			title += ',評定平均,欠席日数';
-			
+
 		} else if (Login.gakubuCd == '3') {
 			title += ',評定平均,評定段階,欠席1年,欠席2年,欠席3年,欠席4年,公欠1年,公欠2年,公欠3年';
 		} else {
@@ -346,7 +348,7 @@
 				if (Login.gakubuCd == '2') {
 					datas += ',"' + chosa['評定平均'] + '"';
 					datas += ',"' + chosa['欠席日数'] + '"';
-					
+
 				} else if (Login.gakubuCd == '3') {
 					datas += ',"' + chosa['評定平均'] + '"';
 					datas += ',"' + chosa['評定段階'] + '"';
@@ -357,7 +359,7 @@
 					datas += ',"' + chosa['公欠1年'] + '"';
 					datas += ',"' + chosa['公欠2年'] + '"';
 					datas += ',"' + chosa['公欠3年'] + '"';
-					
+
 				} else {
 					for (var key in chosa) {
 						datas += ',"' + chosa[key] + '"';
@@ -371,18 +373,18 @@
 			datas += '\n';
 		}
 		var content = title + '\n' + datas;
-		
+
 		var blob = Utf2Sjis.convert(content);
 		//var blob = new Blob([ bom, content ], { "type" : "text/csv" });
-		if (window.navigator.msSaveBlob) { 
-			window.navigator.msSaveBlob(blob, "entry_user.csv"); 
+		if (window.navigator.msSaveBlob) {
+			window.navigator.msSaveBlob(blob, "entry_user.csv");
 		} else {
 			document.getElementById("export").href = window.URL.createObjectURL(blob);
 		}
 		//location.reload();
-		
+
 	};
-		
+
 	/**
 	 *
      * 検索結果CSV出力処理
@@ -394,7 +396,7 @@
 		// 可変タイトル数の取得
 		//
 		var title = '出願日,書類確認日,整理番号,氏名,確認, OK確認日, ブロック番号,受験番号,備考';
-		
+
 		//
 		// データ行の取得
 		//
@@ -413,14 +415,14 @@
 			datas += '\n';
 		}
 		var content = title + '\n' + datas;
-		
+
 		var blob = Utf2Sjis.convert(content);
-		if (window.navigator.msSaveBlob) { 
-			window.navigator.msSaveBlob(blob, "entry_list.csv"); 
+		if (window.navigator.msSaveBlob) {
+			window.navigator.msSaveBlob(blob, "entry_list.csv");
 		} else {
 			document.getElementById("exportList").href = window.URL.createObjectURL(blob);
 		}
-		
+
 	};
 	/**
 	 *
@@ -442,7 +444,7 @@
 			Clist.edit(target);
 		});
 	};
-	
+
 	/**
 	 *
      * 再検索処理
@@ -457,7 +459,7 @@
 		// 検索画面開く
 		$("#searchAccCollapse").collapse('show');
 	};
-	
+
 	/**
 	 *
      * 一覧再描画処理
@@ -473,14 +475,14 @@
 			fixedHeader: true,
 			scrollY: 530,
 			order:[[0,'asc']],
-			displayLength: 50, 
+			displayLength: 50,
 			columnDefs: [ {
 			     targets: [4,6,9],
 			     orderable: false
    			 } ],
 			language: {
 				url: stngcode.dataTableJpnUrl
-			} 
+			}
 		});
 		cmncode.datepickerInit(true);
 		Clist.init();
