@@ -29,7 +29,7 @@
 	 	"CAN":{ cd: "3", name:"ｷｬﾝｾﾙ", bgcolor:""}
 	 };
 
-	
+
 	/**
 	 * URL定義
 	 */
@@ -69,6 +69,11 @@
 	 * 一斉メール送信時の同時送信件数
 	 */
 	stngcode.ajax.sendMax = 20;
+
+	/**
+	 * 受験番号連携処理の1回あたり送信数
+	 */
+	stngcode.ajax.divUnit = 200;
 
 
 	/**

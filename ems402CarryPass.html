@@ -20,8 +20,8 @@
 		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
 		<script src="./jquery/jquery.blockUI.js"></script>
 		<script src="./jquery/autosize.min.js"></script>
-		
-		<!-- bootstrap-datepicker 
+
+		<!-- bootstrap-datepicker
 		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
 		<script src="./jquery/bootstrap-datepicker.min.js"></script>
 		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
@@ -35,31 +35,31 @@
 		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
 
 		<link rel="stylesheet" href="./css/custom.css" />
-				
-		<script src="./js/settingcode.js?ver=20170323-1"></script>
-		<script src="./js/commoncode.js?ver=20170323-1"></script>
-		<script src="./js/cmnlogin.js?ver=20170323-1"></script>
-		<script src="./js/menuitem.js?ver=20170323-1"></script>
-		<script src="./js/cd.js?ver=20170323-1"></script>
-		<script src="./js/stepchk.js?ver=20170323-1"></script>
-		<script src="./js/cmncontrol.js?ver=20170323-1"></script>
-		
-		<script src="./js/ems402/ems402valid.js?ver=20170323-1"></script>
-		<script src="./js/ems402/ems402viewmodel.js?ver=20170323-1"></script>
-		<script src="./js/ems402/ems402control.js?ver=20170323-1"></script>
-		<script src="./js/ems402/ems402slist.js?ver=20170323-1"></script>
+
+		<script src="./js/settingcode.js?ver=20180102"></script>
+		<script src="./js/commoncode.js?ver=20180102"></script>
+		<script src="./js/cmnlogin.js?ver=20180102"></script>
+		<script src="./js/menuitem.js?ver=20180102"></script>
+		<script src="./js/cd.js?ver=20180102"></script>
+		<script src="./js/stepchk.js?ver=20180102"></script>
+		<script src="./js/cmncontrol.js?ver=20180102"></script>
+
+		<script src="./js/ems402/ems402valid.js?ver=20180102"></script>
+		<script src="./js/ems402/ems402viewmodel.js?ver=20180102"></script>
+		<script src="./js/ems402/ems402control.js?ver=20180102"></script>
+		<script src="./js/ems402/ems402slist.js?ver=20180102"></script>
 
 	</head>
 	<body>
-		
+
 		<div id="page01">
 		<div class="container">
 		<div class="row">
-		
+
 		<div id="menuParts">
 			<!--MENU-->
 		</div>
-		
+
 		<!-- ################ 入力画面 ################ -->
 		<form class="form-horizontal" id="page01form1">
 			<div class="panel panel-primary">
@@ -70,11 +70,11 @@
 					</a>
 				</h3>
 			</div>
-			
+
 			<div id="searchAccCollapse" class="panel-collapse collapse in">
 			<div class="panel-body">
 			<fieldset class="cs-search">
-			
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
 		  			<div class="col-sm-5">
@@ -84,14 +84,14 @@
 				  				<select class="form-control" name="siken_cd" id="siken_cd">
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
 					</div>
-					
+
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="gakka_cd">学科</label>
 		  			<div class="col-sm-5">
@@ -101,12 +101,12 @@
 				  				<select class="form-control" name="gakka_cd" id="gakka_cd">
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
 					</div>
-					
+
 					<div class="col-sm-1"></div>
 					<div id="wakuselect">
 						<div class="col-sm-2">
@@ -125,7 +125,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="gohi_stat">合否状況</label>
 		  			<div class="col-sm-5">
@@ -137,7 +137,7 @@
 				  			<option value="6" >正規合格</option>
 				  			<option value="7" >繰上合格</option>
 				  			<option value="8" >追加合格</option>
-		  				</select>				  			
+		  				</select>
 					</div>
 					<label class="col-sm-1 control-label" for="nokin_stat">納金状況</label>
 		  			<div class="col-sm-5">
@@ -148,13 +148,13 @@
 				  				<option value="" >指定なし</option>
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" ></label>
 		  			<div class="col-sm-4">
@@ -168,21 +168,21 @@
 						<button type="submit" class="btn btn-default" id="page01Search">検索</button>
 					</div>
 				</div>
-				
+
 			</fieldset>
 
 			</div> <!--panel-body-->
 			</div> <!--panel collapse-->
 			</div> <!--panel-->
 		</form>
-		
+
 		<form class="form-horizontal" id="page01form2">
-		
+
 			<div id="table_Tmpl"></div>
-				
+
 				<!-- jQuery Template -->
 			  	<script id="table_Script" type="text/x-jquery-tmpl">
-			  	
+
 					<div class="form-group">
 						<div class="col-sm-2">
 							<button type="button" class="btn btn-default" id="page01Summary">納金状況集計</button>
@@ -191,7 +191,7 @@
 							<button type="button" class="btn btn-default" id="page01SummaryAll">納金状況集計(学科計)</button>
 						</div>
 					</div>
-					
+
 					<table class="table " id="page01Table">
 						<thead>
 							<tr class="active">
@@ -206,7 +206,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						
+
 						{{each srch_list}}
 							<tr id=${seq}>
 								<td> ${sogo_juni} </td>
@@ -217,7 +217,7 @@
 											<option value=${cd} > ${name} </option>
 										{{/each}}
 									</select>
-								
+
 								</td>
 								<td> ${juken_no} </td>
 								<td> <a href="./ems500RefDt.html?seiri_no=${seiri_no}&gakka_cd=${gakka_cd}&gakubu_cd=${gakubu_cd}&log=${log}" target="_blank">${simei}</a></td>
@@ -225,15 +225,15 @@
 									<select class="form-control" name="nokin_select" id=${seq}-nokin >
 										{{each nokin}}
 											<option value=${cd} > ${name} </option>
-										{{/each}}	
+										{{/each}}
 									</select>
 								</td>
 								<td><input type="text" class="form-control" name="biko_kuriage" id=${seq}-biko value=${biko_kuriage}> </td>
 								<td><a href="./ems504OverLap.html?seiri_no=${seiri_no}&gakka_cd=${gakka_cd}&gakubu_cd=${gakubu_cd}&log=${log}&heigan_seq=${heigan_seq}" target="_blank">${heigan_seq}</a></td>
 							</tr>
 						{{/each}}
-							
-							
+
+
 						</tbody>
 					</table>
 
@@ -245,20 +245,20 @@
 							<button type="button" class="btn btn-default center-block" id="page01Cancel">検索条件再指定</button>
 						</div>
 					</div>
-				
-				
+
+
 				<!-- jQuery Template -->
 				</script>
-				
+
 		</form>
-		
+
 		</div> <!--row-->
 		</div> <!--container-->
 		</div> <!--page-->
 
 		<div id="dialogParts">
 			<!--DIALOG-->
-		</div>			
+		</div>
 
 <!-- ################# 納金状況集計ダイアログ ###############-->
 <div class="modal fade" id="nokinSummary" tabindex="-1">
@@ -321,13 +321,13 @@
 									<td class="cs-right">${a_45}　(${a_4})</td>
 									<td class="cs-right">${a_67}　(${a_6})</td>
 								</tr>
-	
+
 							</tbody>
 						</table>
-						
+
 					<!-- jQuery Template -->
 					</script>
-					
+
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -335,7 +335,7 @@
 			</div>
 		</div>
 	</div>
-</div>		
-		
+</div>
+
 </body>
 </html>
