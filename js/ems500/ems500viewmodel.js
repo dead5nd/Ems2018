@@ -370,13 +370,16 @@
 			if (key == '評定平均') { vname = 'value1'; }
 			if (key == '欠席日数') { vname = 'value2'; }
 			if (key == '評定段階') { vname = 'value3'; }
-			if (key == '欠席1年') { vname = 'value4'; }
-			if (key == '公欠1年') { vname = 'value5'; }
-			if (key == '欠席2年') { vname = 'value6'; }
-			if (key == '公欠2年') { vname = 'value7'; }
-			if (key == '欠席3年') { vname = 'value8'; }
-			if (key == '公欠3年') { vname = 'value9'; }
-			if (key == '欠席4年') { vname = 'value10'; }
+
+			if (key == '科目評定_国語') { vname = 'value4'; }
+			if (key == '科目評定_数学') { vname = 'value5'; }
+			if (key == '科目評定_理科') { vname = 'value6'; }
+			if (key == '科目評定_英語') { vname = 'value7'; }
+
+			if (key == '欠席1年') { vname = 'value8'; }
+			if (key == '欠席2年') { vname = 'value9'; }
+			if (key == '欠席3年') { vname = 'value10'; }
+			if (key == '公欠日数') { vname = 'value11'; }
 
 			chosa[vname] = data.chosa[key]
 
@@ -677,13 +680,15 @@
 		chosa['評定平均'] = $("#value1").val();
 		chosa['欠席日数'] = $("#value2").val();
 		chosa['評定段階'] = $("#value3").val();
-		chosa['欠席1年'] = $("#value4").val();
-		chosa['公欠1年'] = $("#value5").val();
-		chosa['欠席2年'] = $("#value6").val();
-		chosa['公欠2年'] = $("#value7").val();
-		chosa['欠席3年'] = $("#value8").val();
-		chosa['公欠3年'] = $("#value9").val();
-		chosa['欠席4年'] = $("#value10").val();
+		chosa['科目評定_国語'] = $("#value4").val();
+		chosa['科目評定_数学'] = $("#value5").val();
+		chosa['科目評定_理科'] = $("#value6").val();
+		chosa['科目評定_英語'] = $("#value7").val();
+		chosa['欠席1年'] = $("#value8").val();
+		chosa['欠席2年'] = $("#value9").val();
+		chosa['欠席3年'] = $("#value10").val();
+		chosa['公欠日数'] = $("#value11").val();
+
 
 		//汎用更新処理を利用する
 

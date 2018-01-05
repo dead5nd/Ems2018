@@ -324,7 +324,7 @@
 			title += ',評定平均,欠席日数';
 
 		} else if (Login.gakubuCd == '3') {
-			title += ',評定平均,評定段階,欠席1年,欠席2年,欠席3年,欠席4年,公欠1年,公欠2年,公欠3年';
+			title += ',評定平均,評定段階,科目評定_国語,科目評定_数学,科目評定_理科,科目評定_英語,欠席1年,欠席2年,欠席3年,公欠日数';
 		} else {
 			var col = 0;
 			if (Clist.data[0]['chosa_json1'] != '') {
@@ -352,13 +352,16 @@
 				} else if (Login.gakubuCd == '3') {
 					datas += ',"' + chosa['評定平均'] + '"';
 					datas += ',"' + chosa['評定段階'] + '"';
+
+					datas += ',"' + chosa['科目評定_国語'] + '"';
+					datas += ',"' + chosa['科目評定_数学'] + '"';
+					datas += ',"' + chosa['科目評定_理科'] + '"';
+					datas += ',"' + chosa['科目評定_英語'] + '"';
+
 					datas += ',"' + chosa['欠席1年'] + '"';
 					datas += ',"' + chosa['欠席2年'] + '"';
 					datas += ',"' + chosa['欠席3年'] + '"';
-					datas += ',"' + chosa['欠席4年'] + '"';
-					datas += ',"' + chosa['公欠1年'] + '"';
-					datas += ',"' + chosa['公欠2年'] + '"';
-					datas += ',"' + chosa['公欠3年'] + '"';
+					datas += ',"' + chosa['公欠日数'] + '"';
 
 				} else {
 					for (var key in chosa) {
