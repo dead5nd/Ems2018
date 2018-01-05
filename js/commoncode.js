@@ -263,7 +263,8 @@
     		return ((num + "").length == 1) ? "0" + num : num;
   		}
 		var now = new Date();
-		return now.getFullYear() + '/' + p(now.getMonth()+1) + '/' +p(now.getDate() - d);
+		now.setDate(now.getDate() - d);
+		return now.getFullYear() + '/' + p(now.getMonth()+1) + '/' +p(now.getDate());
 	};
 	/**
 	 *
