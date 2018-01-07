@@ -56,7 +56,7 @@
 		var entry_date_s = $("#entry_date_s").val();
 		var entry_date_e = $("#entry_date_e").val();
 		var torihiki_id = $("#torihiki_id").val();
-		
+
 		if (siken_cd) {
 			cond = cond + "AND s.siken_cd = '" + siken_cd + "' ";
 		}
@@ -104,7 +104,7 @@
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
 			},
 			complete: function() {
-				cmncode.dlg.hideLoading();
+				//cmncode.dlg.hideLoading();
 			}
 		});
 
@@ -120,7 +120,7 @@
 	Ems103ViewModel.exportCSV = function(list)
 	{
 		// 送信中のメッセージ表示
-		cmncode.dlg.showLoading(stngcode.msg.ems103prog);
+		//cmncode.dlg.showLoading(stngcode.msg.ems103prog);
 
 		//
 		// 可変タイトル数の取得
