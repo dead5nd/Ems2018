@@ -77,7 +77,7 @@
 
 			},
 			complete: function() {
-				cmncode.dlg.hideLoading();
+				//cmncode.dlg.hideLoading();
 			}
 		});
 
@@ -179,6 +179,7 @@
 					cmncode.dlg.alertMessage('エラー', data.err_msg);
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
+					cmncode.dlg.hideLoading();
 				}
 
 			},
@@ -186,6 +187,7 @@
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
 				// 検索条件入力有効
 				$(".cs-search").prop('disabled', false);
+				cmncode.dlg.hideLoading();
 
 			},
 			complete: function() {
