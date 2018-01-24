@@ -95,13 +95,16 @@
 						Ems103ViewModel.exportCSV(data.srch_list);
 					} else {
 						cmncode.dlg.alertMessage('エラー', stngcode.msg.ems103error);
+						cmncode.dlg.hideLoading();
 					}
 				} else {
 					cmncode.dlg.alertMessage('エラー', data.err_msg);
+					cmncode.dlg.hideLoading();
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
+				cmncode.dlg.hideLoading();
 			},
 			complete: function() {
 				//cmncode.dlg.hideLoading();

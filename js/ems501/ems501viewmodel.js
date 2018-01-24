@@ -1,4 +1,4 @@
-/** 
+/**
 * @fileOverview Ems501画面表示・ビジネスロジック
 * @author FiT
 * @version 1.0.0
@@ -10,13 +10,13 @@
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Ems501ViewModel = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 画面生成時の初期処理
@@ -31,8 +31,8 @@
 		cmncode.template.bind("uketuke_Script", {"rows": cd.uketuke} , "uketuke_Tmpl");
 		cmncode.template.bind("gohi_Script", {"rows": cd.gohi} , "gohi_Tmpl");
 		cmncode.template.bind("nokin_Script", {"rows": cd.nokin} , "nokin_Tmpl");
-	};	
-	
+	};
+
 	/**
 	 *
      * 試験地選択欄の更新
@@ -40,13 +40,13 @@
      */
 	Ems501ViewModel.sikentiSelect = function()
 	{
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		sendData['gakubu_cd'] = Login.gakubuCd;
 		sendData['siken_cd'] = $("#siken_cd").val();
 		sendData['gakka_cd'] = $("#gakka_cd").val();
-		
+
 		$.ajax({
 			url:stngcode.ajax.getSikentiUrl,
 			type: 'post',
@@ -72,9 +72,9 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-	};	
-	
+		});
+	};
+
 	/**
 	 *
      * Search処理
@@ -85,20 +85,20 @@
 
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems501prog1);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
+		var sendData = {};
 		sendData['nendo'] = cmncode.getNendo();
 		sendData['gakubu_cd'] = Login.gakubuCd;
 		sendData['siken_cd'] = $("#siken_cd").val();
 		sendData['gakka_cd'] = $("#gakka_cd").val();
 		sendData['sikenti_cd'] = $("#sikenti_cd").val();
-		
+
 		sendData['uketuke_stat'] = $("#uketuke_stat").val();
 		sendData['gohi_stat'] = $("#gohi_stat").val();
 		sendData['nokin_stat'] = $("#nokin_stat").val();
 		sendData['heigan_seq'] = $("#heigan_seq").val();
-		
+
 		var seiri_no11 = $("#seiri_no").val();
 		sendData['seiri_no'] = seiri_no11.substr(0,9);
 		if (seiri_no11.length > 9) {
@@ -111,11 +111,11 @@
 		sendData['kana_simei'] = $("#kana_simei").val();
 		sendData['det_req'] = '1'; //詳細情報必要
 		sendData['dai2_kubun'] = $("#dai2_kubun").val();
-		
+
 		//<<2017/5/4
 		sendData['zaseki_warihuri'] = $("#zaseki_warihuri").val();
 		//>>
-		
+
 		//受験番号未発行を選択した場合に受付状況が「選択なし」なら書類OKを条件に追加する
 		sendData['juken_stat'] = $("#juken_stat").val();
 		if (sendData['juken_stat'] == '0') {
@@ -123,7 +123,7 @@
 				sendData['uketuke_stat'] = '1';
 			}
 		}
-	
+
 		$.ajax({
 			url:stngcode.ajax.jgRefUrl,
 			type: 'post',
@@ -137,12 +137,12 @@
 					if ('srch_list' in data) {
 						//受信データの編集処理
 						Ems501ViewModel.checkSrchResult(data.srch_list);
-						
+
 						//jqueryTemplateで画面を作る
 						cmncode.template.bind("table_Script", {"rows": Ems501ViewModel.result_list} , "table_Tmpl");
 						// Data Tables初期化
 						cmncode.dataTablesInit(true,0);
-						
+
 						// 検索画面閉じる
 						$("#searchAccCollapse").collapse('hide');
 					} else {
@@ -156,7 +156,7 @@
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -167,9 +167,9 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-		
-	};	
+		});
+
+	};
 	/**
 	 *
      * 検索結果一覧の中で受験番号の桁数を学部仕様にする
@@ -197,10 +197,10 @@
 			after_list[i]['chosa'] = list[i]['chosa'];
 			after_list[i]['gakuseki_no'] = list[i]['gakuseki_no'];
 		}
-		
+
 		Ems501ViewModel.result_list = after_list;
 	};
-	
+
 
 	/**
 	 *
@@ -216,7 +216,7 @@
 		// 送信情報を取得
 		$("#nendo").val(cmncode.getNendo());
 		var fd = new FormData(form);
-	
+
 		$.ajax({
 			url:stngcode.ajax.jgImpUrl,
 			type: 'post',
@@ -233,7 +233,7 @@
 				} else {
 					cmncode.dlg.alertMessage('エラー', data.err_msg);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -242,8 +242,8 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});		
-	
+		});
+
 	};
 	/**
 	 *
@@ -255,13 +255,13 @@
 		//var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
 		var gakka_cd;
 		var senko_cd;
-		
+
 		var content = '学科コード,専攻コード,学籍番号,受験番号,氏名（セイ）,氏名（メイ）,氏名（姓）,氏名（名）,性別コード,生年月日,郵便番号,都道府県コード,都道府県名,市郡区,町番地,マンションなど,';
 			content +='電話（本人携帯）,卒業年月,高校コード,修学年,入試別,年度\r\n';
 		for (var i = 0; i < Ems501ViewModel.result_list.length; i++) {
 			//学科コードを学事用に変換
 			gakka_cd = cd.gakuji_gakka[ Ems501ViewModel.result_list[i]['gakka_cd'] ];
-			
+
 			//専攻コードを学事用に変換
 			if (gakka_cd == '44') {
 				senko_cd = '4401';
@@ -270,7 +270,7 @@
 			} else {
 				senko_cd = '9999';
 			}
-			
+
 			content += '"'   + gakka_cd;
 			content += '","' + senko_cd;
 			content += '","' + Ems501ViewModel.result_list[i]['gakuseki_no'];
@@ -281,35 +281,35 @@
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv32'];
 			content += '","' + cd.gakuji_seibetu[ Ems501ViewModel.result_list[i]['renkei']['csv34'] ];
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv33'];
-				
+
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv55'];
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv56'];
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv57'];
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv58'];
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv59'];
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv60'];
-				
+
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv51'];
 			content += '","' +cmncode.ym2ymd( Ems501ViewModel.result_list[i]['renkei']['csv47'] );
 			content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv36'];
-			
+
 			content += '","' + cd.gakuji_syugakunen[ Ems501ViewModel.result_list[i]['gakka_cd'] ];
 			content += '","' + cd.gakuji_siken[ Ems501ViewModel.result_list[i]['renkei']['csv09'] ];
 			content += '","' + cmncode.getNendo();
-			
+
 			content += '"\r\n';
 		}
 		//var blob = new Blob([ bom, content ], { "type" : "text/csv" });
 		var blob = Utf2Sjis.convert(content);
-		if (window.navigator.msSaveBlob) { 
-			window.navigator.msSaveBlob(blob, "gakuji_export.csv"); 
+		if (window.navigator.msSaveBlob) {
+			window.navigator.msSaveBlob(blob, "gakuji_export.csv");
 		} else {
 			document.getElementById("export1").href = window.URL.createObjectURL(blob);
 		}
 		location.reload();
-		
+
 	};
-		
+
 	/**
 	 *
      * 検索結果CSV出力処理
@@ -327,7 +327,7 @@
 				content += '"'   + Ems501ViewModel.result_list[i]['seiri_no'];
 				content += '","' + Ems501ViewModel.result_list[i]['juken_no'];
 				content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv27'];
-				content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv17'];
+				content += '","' + cd.kaijonm_cd[ Login.gakubuCd + Ems501ViewModel.result_list[i]['renkei']['csv16'] ];
 				content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv28'];
 				content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv31'];
 				content += '","' + Ems501ViewModel.result_list[i]['renkei']['csv32'];
@@ -349,10 +349,10 @@
 				for (var key in Ems501ViewModel.result_list[i]['chosa']) {
 					if (key == '評定平均') {
 						chosa1 =  Ems501ViewModel.result_list[i]['chosa']['評定平均'];
-					} 
+					}
 					if (key == '欠席日数') {
 						chosa2 =  Ems501ViewModel.result_list[i]['chosa']['欠席日数'];
-					} 
+					}
 				}
 				content += '","' + chosa1;
 				content += '","' + chosa2;
@@ -392,14 +392,14 @@
 		}
 		//var blob = new Blob([ bom, content ], { "type" : "text/csv" });
 		var blob = Utf2Sjis.convert(content);
-		if (window.navigator.msSaveBlob) { 
-			window.navigator.msSaveBlob(blob, "jmember_export.csv"); 
+		if (window.navigator.msSaveBlob) {
+			window.navigator.msSaveBlob(blob, "jmember_export.csv");
 		} else {
 			document.getElementById("export2").href = window.URL.createObjectURL(blob);
 		}
 		location.reload();
-		
+
 	};
-	
-	
+
+
 })();

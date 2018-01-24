@@ -457,7 +457,7 @@
 	{
 		var ret = false;
 		if (Login.gakubuCd == stngcode.IGAKU) { //医学部
-			if (siken_cd = '5') { //センター後期
+			if (siken_cd == '5') { //センター後期
 				ret = true;
 			}
 		}
