@@ -20,8 +20,8 @@
 		<script src="./jquery/jquery.validate.bootstrap3.js"></script>
 		<script src="./jquery/jquery.blockUI.js"></script>
 		<script src="./jquery/autosize.min.js"></script>
-		
-		<!-- bootstrap-datepicker 
+
+		<!-- bootstrap-datepicker
 		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
 		<script src="./jquery/bootstrap-datepicker.min.js"></script>
 		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
@@ -35,30 +35,30 @@
 		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
 
 		<link rel="stylesheet" href="./css/custom.css" />
-				
-		<script src="./js/settingcode.js?ver=20171211"></script>
-		<script src="./js/commoncode.js?ver=20171211"></script>
-		<script src="./js/cmnlogin.js?ver=20171211"></script>
-		<script src="./js/menuitem.js?ver=20171211"></script>
-		<script src="./js/cd.js?ver=20171211"></script>
-		<script src="./js/cmncontrol.js?ver=20171211"></script>
-		
-		<script src="./js/ems304/ems304valid.js?ver=20171211"></script>
-		<script src="./js/ems304/ems304viewmodel.js?ver=20171211"></script>
-		<script src="./js/ems304/ems304control.js?ver=20171211"></script>
-		<script src="./js/ems304/ems304slist.js?ver=20171211"></script>
+
+		<script src="./js/settingcode.js?ver=20180127"></script>
+		<script src="./js/commoncode.js?ver=20180127"></script>
+		<script src="./js/cmnlogin.js?ver=20180127"></script>
+		<script src="./js/menuitem.js?ver=20180127"></script>
+		<script src="./js/cd.js?ver=20180127"></script>
+		<script src="./js/cmncontrol.js?ver=20180127"></script>
+
+		<script src="./js/ems304/ems304valid.js?ver=20180127"></script>
+		<script src="./js/ems304/ems304viewmodel.js?ver=20180127"></script>
+		<script src="./js/ems304/ems304control.js?ver=20180127"></script>
+		<script src="./js/ems304/ems304slist.js?ver=20180127"></script>
 
 	</head>
 	<body>
-		
+
 		<div id="page01">
 		<div class="container">
 		<div class="row">
-		
+
 		<div id="menuParts">
 			<!--MENU-->
 		</div>
-		
+
 		<!-- ################ 入力画面 ################ -->
 		<form class="form-horizontal" id="page01form1">
 			<div class="panel panel-primary">
@@ -69,11 +69,11 @@
 					</a>
 				</h3>
 			</div>
-			
+
 			<div id="searchAccCollapse" class="panel-collapse collapse in">
 			<div class="panel-body">
 			<fieldset class="cs-search">
-			
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
 		  			<div class="col-sm-5">
@@ -83,7 +83,7 @@
 				  				<select class="form-control" name="siken_cd" id="siken_cd">
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
@@ -97,9 +97,9 @@
 							</select>
 						</div>
 					</div>
-					
+
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="gakka_cd">学科</label>
 		  			<div class="col-sm-5">
@@ -109,7 +109,7 @@
 				  				<select class="form-control" name="gakka_cd" id="gakka_cd">
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
@@ -118,24 +118,24 @@
 						<button type="submit" class="btn btn-primary" id="page01Search">対象検索</button>
 					</div>
 				</div>
-				
+
 			</fieldset>
 
 			</div> <!--panel-body-->
 			</div> <!--panel collapse-->
 			</div> <!--panel-->
 		</form>
-			
-		
-		
+
+
+
 		</div> <!--row-->
 		</div> <!--container-->
 		</div> <!--page-->
 
 		<div id="dialogParts">
 			<!--DIALOG-->
-		</div>		
-		
-		
+		</div>
+
+
 </body>
 </html>
