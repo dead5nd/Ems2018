@@ -728,7 +728,9 @@
 					case 'F1': //物理
 					case 'F2': //化学
 					case 'F3': //生物
-						rika_cnt = rika_cnt + 1;
+						if (tmpnum > 0) {
+							rika_cnt = rika_cnt + 1;
+						}
 						gakka = gakka + tmpnum;
 						break;
 
