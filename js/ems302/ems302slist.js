@@ -1,23 +1,23 @@
-/** 
+/**
 * @fileOverview 成績入力一覧クラス
 * @author FiT
 * @version 1.0.0
 *
 * 2017/5/11 センター試験の場合、マークシートと筆記を入れ替える
-*          
+*
 */
 
 (function()
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Slist = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 一覧データの初期設定
@@ -33,18 +33,18 @@
 				Slist.data['th_list'][i]['setumon_no'] = list[0]['q_list'][i]['setumon_no'];
 				Slist.data['th_list'][i]['setumon_nm'] = list[0]['q_list'][i]['setumon_nm'];
 			}
-			
+
 			//マークシートデータなければ表示しない
 			if (list[0]['ms_score'] != '') {
 				Slist.data['ms_kubun'] = '2';
 			} else {
 				Slist.data['ms_kubun'] = '0';
 			}
-			
+
 			Slist.data['tr_list'] = [];
 			for (var i = 0; i < list.length; i++) {
 				Slist.data['tr_list'][i] = {};
-				
+
 				Slist.data['tr_list'][i]['juken_no'] = cmncode.jnoToShort( list[i]['juken_no'] );
 				Slist.data['tr_list'][i]['simei'] = list[i]['simei'];
 				Slist.data['tr_list'][i]['ms_score'] = cmncode.floatToInt(list[i]['ms_score']);
@@ -56,8 +56,8 @@
 				Slist.data['tr_list'][i]['buturi_ari'] = list[i]['buturi_ari'];
 				Slist.data['tr_list'][i]['kagaku_ari'] = list[i]['kagaku_ari'];
 				Slist.data['tr_list'][i]['seibutu_ari'] = list[i]['seibutu_ari'];
-				
-				
+
+
 				//管理用
 				Slist.data['tr_list'][i]['seq'] = i;
 				Slist.data['tr_list'][i]['upd'] = '0';
@@ -74,13 +74,13 @@
 				if (list[0]['k_list'][i]['ms_kubun'] == '1') {
 					Slist.data['ms_kubun'] = '1';
 				}
-				
+
 			}
-			
+
 			Slist.data['tr_list'] = [];
 			var j = 0;
 			var kekkaku_cd;
-			
+
 			for (var i = 0; i < list.length; i++) {
 				kekkaku_cd = list[i]['kekkaku_cd'] == '' ? '0' : list[i]['kekkaku_cd'];
 				if ( ($("#ketu_flg").prop('checked') ) && (list[i]['ketu']  == '1') ) {
@@ -96,8 +96,8 @@
 					//>>
 					Slist.data['tr_list'][j]['kekkaku_cd'] = list[i]['kekkaku_cd'] == '0' ? '' : list[i]['kekkaku_cd'];
 					Slist.data['tr_list'][j]['gakka_cd'] = list[i]['gakka_cd'];
-					
-					//<<2017/5/11 
+
+					//<<2017/5/11
 					//センター試験の場合、マークシートを筆記の領域にセットする
 					switch ($("#siken_cd").val()) {
 					case '4':
@@ -110,14 +110,14 @@
 					//管理用
 					Slist.data['tr_list'][j]['seq'] = j;
 					Slist.data['tr_list'][j]['upd'] = '0';
-					
+
 					//理科選択科目情報
 					Slist.data['tr_list'][j]['buturi_ari'] = list[i]['buturi_ari'];
 					Slist.data['tr_list'][j]['kagaku_ari'] = list[i]['kagaku_ari'];
 					Slist.data['tr_list'][j]['seibutu_ari'] = list[i]['seibutu_ari'];
 					j++;
 				}
-				
+
 			}
 		} else  {
 			Slist.data = {};
@@ -137,7 +137,7 @@
 				Slist.data['tr_list'][i]['upd'] = '0';
 			}
 		}
-		
+
 	};
 	/**
 	 *
@@ -154,28 +154,28 @@
 		Slist.data['th_list'][0]['kamoku_cd'] = 'P1';
 		Slist.data['th_list'][0]['kamoku_nm_s'] = '一般前L1';
 		Slist.data['th_list'][0]['ms_kubun'] = '0';
-		
+
 		Slist.data['th_list'][1] = {};
 		Slist.data['th_list'][1]['kamoku_cd'] = 'P2';
 		Slist.data['th_list'][1]['kamoku_nm_s'] = '一般前L2';
 		Slist.data['th_list'][1]['ms_kubun'] = '0';
-		
+
 		Slist.data['th_list'][2] = {};
 		Slist.data['th_list'][2]['kamoku_cd'] = 'P3';
 		Slist.data['th_list'][2]['kamoku_nm_s'] = 'C前L1';
 		Slist.data['th_list'][2]['ms_kubun'] = '0';
-		
+
 		Slist.data['th_list'][3] = {};
 		Slist.data['th_list'][3]['kamoku_cd'] = 'P4';
 		Slist.data['th_list'][3]['kamoku_nm_s'] = 'C前L2';
 		Slist.data['th_list'][3]['ms_kubun'] = '0';
-		
 
-			
+
+
 		Slist.data['tr_list'] = [];
 		var j = 0;
 		var kekkaku_cd;
-			
+
 		for (var i = 0; i < list.length; i++) {
 			if ( list[i]['gakka_cd'] == $("#gakka_cd").val() ) {
 				kekkaku_cd = list[i]['kekkaku_cd'] == '0';
@@ -185,32 +185,32 @@
 				Slist.data['tr_list'][j]['ketu'] = '';
 				Slist.data['tr_list'][j]['kekkaku_cd'] = '';
 				Slist.data['tr_list'][j]['gakka_cd'] = list[i]['gakka_cd'];
-				
+
 				Slist.data['tr_list'][j]['k_list'] = [];
 				Slist.data['tr_list'][j]['k_list'][0] = {};
 				Slist.data['tr_list'][j]['k_list'][0]['kamoku_cd'] = 'P1';
 				Slist.data['tr_list'][j]['k_list'][0]['ms_kubun'] = '0';
 				Slist.data['tr_list'][j]['k_list'][0]['kamoku_nm_s'] = '一般前L1';
 				Slist.data['tr_list'][j]['k_list'][0]['ms_score'] = '';
-				
+
 				Slist.data['tr_list'][j]['k_list'][1] = {};
 				Slist.data['tr_list'][j]['k_list'][1]['kamoku_cd'] = 'P2';
 				Slist.data['tr_list'][j]['k_list'][1]['ms_kubun'] = '0';
 				Slist.data['tr_list'][j]['k_list'][1]['kamoku_nm_s'] = '一般前L2';
 				Slist.data['tr_list'][j]['k_list'][1]['ms_score'] = '';
-				
+
 				Slist.data['tr_list'][j]['k_list'][2] = {};
 				Slist.data['tr_list'][j]['k_list'][2]['kamoku_cd'] = 'P3';
 				Slist.data['tr_list'][j]['k_list'][2]['ms_kubun'] = '0';
 				Slist.data['tr_list'][j]['k_list'][2]['kamoku_nm_s'] = 'C前L1';
 				Slist.data['tr_list'][j]['k_list'][2]['ms_score'] = '';
-				
+
 				Slist.data['tr_list'][j]['k_list'][3] = {};
 				Slist.data['tr_list'][j]['k_list'][3]['kamoku_cd'] = 'P4';
 				Slist.data['tr_list'][j]['k_list'][3]['ms_kubun'] = '0';
 				Slist.data['tr_list'][j]['k_list'][3]['kamoku_nm_s'] = 'C前L2';
 				Slist.data['tr_list'][j]['k_list'][3]['ms_score'] = '';
-				
+
 				//
 				//高成績の抽出
 				//
@@ -255,22 +255,22 @@
 								case '7':
 									scoreArry.push( Number( cmncode.floatToInt(list[i]['k_list_center'][k]['score']) ) );
 									break;
-								
+
 							}
-							
+
 						} else {
 							scoreArry.push( Number( cmncode.floatToInt(list[i]['k_list_center'][k]['score']) ) );
 						}
-						
+
 					}
 					//外国語を100点換算する
-					scoreArry.push( J1K1 * (100/250)); 
-					
+					scoreArry.push( J1K1 * (100/250));
+
 					//臨床検査学科以外は理科基礎科目を１つの科目として利用する
 					//if (list[i]['gakka_cd'] != '1') {
 						scoreArry.push( F123 );
 					//}
-					
+
 					scoreArry.sort(function(a,b){
 				        if( a > b ) return -1;
 				        if( a < b ) return 1;
@@ -282,13 +282,13 @@
 					Slist.data['tr_list'][j]['k_list'][2]['score'] = 0;
 					Slist.data['tr_list'][j]['k_list'][3]['score'] = 0;
 				}
-				
+
 				//医療経営情報学科は上位1科目分だけを利用する
 				if (list[i]['gakka_cd'] == '7') {
 					Slist.data['tr_list'][j]['k_list'][1]['score'] = 0;
 					Slist.data['tr_list'][j]['k_list'][3]['score'] = 0;
 				}
-				
+
 				//管理用
 				Slist.data['tr_list'][j]['seq'] = j;
 				Slist.data['tr_list'][j]['upd'] = '1';
@@ -296,18 +296,18 @@
 			}
 		}
 
-		
+
 	};
-	
+
 	/**
 	 *
      * 一般入試
 	 *
      */
 	Slist.getTopScore = function()
-	{		
-		
-		
+	{
+
+
 	};
 	/**
 	 *
@@ -315,17 +315,17 @@
 	 *
      */
 	Slist.CBRBinit = function()
-	{		
+	{
 		// 受付状況の値による設定
 		var seq;
 		var nameId;
 		for (i=0; i < Slist.data.tr_list.length; i++) {
 			seq = '#' + Slist.data.tr_list[i]['seq'];
-			
+
 			if (Slist.data.tr_list[i]['ketu'] == '1') {
 				$(seq + '-ketu').prop('checked', true);
 			}
-			
+
 			if (Ems302ViewModel.inpType == 'dankaihyoka') {
 				nameId = Slist.data.tr_list[i]['seq']  + 'hyoka';
 				$('[name=' + nameId +']').val([Slist.data.tr_list[i]['hyoka_score']]);
@@ -344,7 +344,7 @@
 					//理科選択科目により入力欄の背景色を変える(医学部向け）
 					if (Login.gakubuCd == '1') {
 						var kamoku_cd = Slist.data.tr_list[i]['k_list'][j]['kamoku_cd'];
-							
+
 						if ( (Slist.data.tr_list[i]['buturi_ari'] != '1') && (kamoku_cd == 'G1') ) {
 							$('#' + i + '-score-' + kamoku_cd).addClass('cs-warning');
 						}
@@ -357,14 +357,14 @@
 					}
 				}
 			}
-		    
+
 			if (Ems302ViewModel.inpType == 'kaitoyosi') {
 				for (var j = 0; j <Slist.data.tr_list[i]['q_list'].length; j++) {
 					//理科選択科目により入力欄の背景色を変える(医学部向け）
 					if (Login.gakubuCd == '1') {
 						var kamoku_cd = $("#kamoku_cd").val();
 						var setumon_no = Slist.data.tr_list[i]['q_list'][j]['setumon_no'];
-							
+
 						if ( (Slist.data.tr_list[i]['buturi_ari'] != '1') && (kamoku_cd == 'G1') ) {
 							$('#' + i + '-score-' + setumon_no).addClass('cs-warning');
 						}
@@ -381,29 +381,31 @@
 			// センタープラス、センター試験は入力欄無効にする
 			//
 			//<<2017/5/11
-			switch ($("#siken_cd").val()) {
-				case '4':
-				case '5':
-					for (var j = 0; j <Slist.data.tr_list[i]['k_list'].length; j++) {
-						var kamoku_cd = Slist.data.tr_list[i]['k_list'][j]['kamoku_cd'];
-						$('#' + i + '-score-' + kamoku_cd).prop('disabled', true);
-					}
-					//登録ボタンも無効にする
-					$("#page01Commit").prop('disabled', true);
-					break;
-				
-				case 'P':
-					for (var j = 0; j <Slist.data.tr_list[i]['k_list'].length; j++) {
-						var kamoku_cd = Slist.data.tr_list[i]['k_list'][j]['kamoku_cd'];
-						$('#' + i + '-score-' + kamoku_cd).prop('disabled', true);
-					}
-					break;
-					
+			if (Ems302ViewModel.inpType == 'kamokuitiran') {
+				switch ($("#siken_cd").val()) {
+					case '4':
+					case '5':
+						for (var j = 0; j <Slist.data.tr_list[i]['k_list'].length; j++) {
+							var kamoku_cd = Slist.data.tr_list[i]['k_list'][j]['kamoku_cd'];
+							$('#' + i + '-score-' + kamoku_cd).prop('disabled', true);
+						}
+							//登録ボタンも無効にする
+						$("#page01Commit").prop('disabled', true);
+						break;
+
+					case 'P':
+						for (var j = 0; j <Slist.data.tr_list[i]['k_list'].length; j++) {
+							var kamoku_cd = Slist.data.tr_list[i]['k_list'][j]['kamoku_cd'];
+							$('#' + i + '-score-' + kamoku_cd).prop('disabled', true);
+						}
+						break;
+
+				}
 			}
 			//>>
 		}
-	};	
-	
+	};
+
 	/**
 	 *
      * テキストBOX入力時の処理
@@ -415,7 +417,7 @@
 		// tr の idに行番号をセットしてあるのでその情報を取得
 		var cur_tr = $(target).closest('tr')[0];
 		var seq = cur_tr.id;
-		
+
 		//id名を-で分割して解析
 		var ary = id.split('-');
 		//-------------------
@@ -437,7 +439,7 @@
 				return;
 			}
 		}
-		
+
 		if (ary[1] == 'kekkaku') {
 			Slist.data.tr_list[seq]['kekkaku_cd'] = inputVal;
 			Slist.data.tr_list[seq]['upd'] ='1';
@@ -448,7 +450,7 @@
 					if (Slist.data.tr_list[seq]['q_list'][i]['setumon_no'] == setumon_no) {
 						Slist.data.tr_list[seq]['q_list'][i]['score'] =inputVal;
 						Slist.data.tr_list[seq]['upd'] ='1';
-						
+
 					}
 				}
 
@@ -464,7 +466,7 @@
 							var score = Slist.data.tr_list[seq]['k_list'][i]['score'];
 							$('#' + ary[0] + '-tscore-' + ary[2]).val( Number(ms_score) + Number(score) );
 						}
-						
+
 					}
 				}
 			}
@@ -472,10 +474,10 @@
 		} else if (ary[1] == 'comment') {
 			Slist.data.tr_list[seq]['comment'] = inputVal;
 			Slist.data.tr_list[seq]['upd'] ='1';
-			
-			
+
+
 		}
-	};	
+	};
 	/**
 	 *
      * 欠席チェック入力時の処理
@@ -487,7 +489,7 @@
 		// tr の idに行番号をセットしてあるのでその情報を取得
 		var cur_tr = $(target).closest('tr')[0];
 		var seq = cur_tr.id;
-		
+
 		//id名を-で分割して解析
 		var ary = id.split('-');
 		var kamoku_cd;
@@ -500,7 +502,7 @@
 				Slist.data.tr_list[seq]['upd'] ='1';
 			}
 		}
-	};	
+	};
 	/**
 	 *
      * 段階評価ラジオボタン入力時の処理
@@ -512,11 +514,11 @@
 		// tr の idに行番号をセットしてあるのでその情報を取得
 		var cur_tr = $(target).closest('tr')[0];
 		var seq = cur_tr.id;
-		
+
 		Slist.data.tr_list[seq]['hyoka_score'] = $('input[name="' + nameId + '"]:checked').val(); ;
 		Slist.data.tr_list[seq]['upd'] ='1';
-		
-	};	
+
+	};
 	/**
 	 *
      * 送信対象データを抽出しJSON形式で戻す
@@ -546,6 +548,6 @@
 			}
 		}
 		return JSON.stringify(seiseki_list);
-	};	
-	
+	};
+
 })();
