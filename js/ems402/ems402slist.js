@@ -1,4 +1,4 @@
-/** 
+/**
 * @fileOverview 成績入力一覧クラス
 * @author FiT
 * @version 1.0.0
@@ -8,13 +8,13 @@
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Slist = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 一覧データの初期設定
@@ -36,29 +36,39 @@
 			{ cd: "7", name:"繰上合格"},
 			{ cd: "8", name:"追加合格"}
 		];
-		
+
 		var before_juni = 0;
 		var juni;
 		var selectId;
 		Slist.data = {};
 		Slist.data['srch_list'] = [];
-		
+
 		for (var i = 0; i < list.length; i++) {
 			Slist.data['srch_list'][i] = list[i];
 			Slist.data['srch_list'][i]['juken_no'] = cmncode.jnoToShort( list[i]['juken_no'] );
-			Slist.data['srch_list'][i]['nokin'] = cd.nokin; 
+			Slist.data['srch_list'][i]['nokin'] = cd.nokin;
 			if (StepChk.ret.cd == '3') { //合否確定
-				Slist.data['srch_list'][i]['gohi'] = gohi2; 
+				//2018.03.23
+				//合否確定後でも正規合格の情報を表示する
+				switch (list[i]['gohi_stat']) {
+					case '5':
+					case '6':
+						Slist.data['srch_list'][i]['gohi'] = gohi1;
+						break;
+					default:
+						Slist.data['srch_list'][i]['gohi'] = gohi2;
+						break;
+				}
 			} else {
-				Slist.data['srch_list'][i]['gohi'] = gohi1; 
+				Slist.data['srch_list'][i]['gohi'] = gohi1;
 			}
-			Slist.data['srch_list'][i]['upd'] = '0'; 
-			
+			Slist.data['srch_list'][i]['upd'] = '0';
+
 			//補欠内順位表示
 			if (Ems402ViewModel.hoketu_jun == '1') {
 				Slist.data['srch_list'][i]['sogo_juni'] = i + 1;
 			}
-			
+
 			//受験生詳細表示用
 			Slist.data['srch_list'][i]['gakubu_cd'] = Login.gakubuCd;
 			Slist.data['srch_list'][i]['gakka_cd'] = $("#gakka_cd").val();
@@ -67,9 +77,9 @@
 
 			//管理用
 			Slist.data['srch_list'][i]['seq'] = i;
-			
+
 		}
-		
+
 	};
 	/**
 	 *
@@ -80,7 +90,7 @@
 	{
 		var before_juni = 0;
 		var juni;
-		
+
 		for (var i = 0; i < Slist.data.srch_list.length; i++) {
 			//合否選択欄の初期設定
 			selectId = '#' + i + '-gohi';
@@ -95,7 +105,7 @@
 						break;
 				}
 			}
-			
+
 			//納金選択欄の初期設定
 			selectId = '#' + i + '-nokin';
 			$(selectId).val(Slist.data.srch_list[i]['nokin_stat']);
@@ -113,7 +123,7 @@
 		var jno_list = [];
 		var j = 0;
 		Slist.bikoError = false; //保留の場合の備考未入力チェック
-		
+
 		for (i=0; i < Slist.data.srch_list.length; i++) {
 			if ( Slist.data.srch_list[i]['upd'] == '1' ) {
 				jno_list[j] = {};
@@ -126,12 +136,12 @@
 					Slist.bikoError = true;
 				}
 				j++;
-				
+
 			}
 		}
 		return JSON.stringify(jno_list);
 	};
-	
+
 	/**
 	 *
      * 入力欄変更時の処理
@@ -143,15 +153,15 @@
 		// tr の idに行番号をセットしてあるのでその情報を取得
 		var cur_tr = $(target).closest('tr')[0];
 		var seq = cur_tr.id;
-		
+
 		//id名を-で分割して解析
 		var ary = id.split('-');
 		if (ary[1] == 'gohi') {
 			var cur_stat = Slist.data.srch_list[seq]['gohi_stat'];
 			var new_stat = $('#' + id).val();
-			
+
 			//繰上合格(7)は、補欠(4)のみ可能
-			if (new_stat == '7') { 
+			if (new_stat == '7') {
 				if (cur_stat == '4') {
 					Slist.data.srch_list[seq]['gohi_stat'] = '7';
 					Slist.data.srch_list[seq]['upd'] = '1';
@@ -179,9 +189,9 @@
 			Slist.data.srch_list[seq]['biko_kuriage'] = $('#' + id).val();
 			Slist.data.srch_list[seq]['upd'] = '1';
 		}
-	};	
-	
-	
+	};
+
+
 	/**
 	 *
      * 合否、納金選択イベント処理
@@ -193,19 +203,19 @@
 			var target = $(e.target);
 			Slist.changeSelect(target);
 		});
-		
+
 		$('select[name="nokin_select"]').on('change', function(e) {
 			var target = $(e.target);
 			Slist.changeSelect(target);
 		});
-		
+
 		$('input[name="biko_kuriage"]').on('change', function(e) {
 			var target = $(e.target);
 			Slist.changeSelect(target);
 		});
-	
+
 
 	};
-	
-	
+
+
 })();

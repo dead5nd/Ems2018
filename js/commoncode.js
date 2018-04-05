@@ -36,6 +36,8 @@
 	 */
 	cmncode.getNendo = function ()
 	{
+		return '2018';
+		/*
 		var now = new Date();
 		var year = now.getFullYear();
 		var month = now.getMonth()+1;
@@ -45,6 +47,7 @@
 			nendo = year + 1;
 		}
 		return String(nendo);
+		*/
 
 		/*
 		// 過去年度動作モードになっている場合にはそれに従う
