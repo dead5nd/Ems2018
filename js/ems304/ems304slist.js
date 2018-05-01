@@ -343,6 +343,7 @@
 			var mu_sikaku = false;
 			var yobi_mu_sikaku = true;
 			var total_score = 0;
+			var score_org = 0; //広報統計用の100点換算前成績
 			var tmpnum;
 			var obj = Slist.data[i].chosa;
 			var hyotei = Slist.chosaData(obj, '評定平均');
@@ -375,6 +376,7 @@
 				tmpnum = Slist.data[i].q_list[j].score == ""  ? 0 : Number( Slist.data[i].q_list[j].score );
 				switch (Slist.data[i].q_list[j].kamoku_cd) {
 					case 'L1': //小論文
+						score_org = score_org + tmpnum;
 						if (Slist.data[i].q_list[j].setumon_no == '01') {
 							ronbun = ronbun + (tmpnum * 0.3);
 						} else {
@@ -386,6 +388,7 @@
 							mu_sikaku = true;
 						}
 					case 'M1': //面接
+						score_org = score_org + tmpnum;
 						mensetu = mensetu + tmpnum;
 						//無資格チェック
 						if (tmpnum == 1) {	//一人でも1なら無資格
@@ -403,7 +406,7 @@
 			total_score = chosa + seikatu + ronbun + mensetu;
 
 			Slist.data[i]['score'] = total_score;
-			Slist.data[i]['aj_score'] = 0; //未使用とする
+			Slist.data[i]['aj_score'] = score_org; //学科分
 
 			//無資格のチェック
 			if ( (mu_sikaku) || (yobi_mu_sikaku) ) {
@@ -465,7 +468,7 @@
 			total_score = chosa + seikatu + (mensetu * 3);
 
 			Slist.data[i]['score'] = total_score;
-			Slist.data[i]['aj_score'] = 0; //未使用とする
+			Slist.data[i]['aj_score'] = (mensetu * 3); //面接分
 			//Slist.data[i]['kekkaku_cd'] = '0'; //欠格でない
 		}
 	};
@@ -502,7 +505,7 @@
 			total_score =( ronbun * 0.5 ) + ( ( mensetu * 10 ) / 3);
 
 			Slist.data[i]['score'] = total_score;
-			Slist.data[i]['aj_score'] = 0; //未使用とする
+			Slist.data[i]['aj_score'] = total_score; //
 			//Slist.data[i]['kekkaku_cd'] = '0'; //欠格でない
 		}
 	};
@@ -610,7 +613,7 @@
 
 				var total_score = eigo  + rika + active + chosa + seikatu;
 				Slist.data[i]['score'] = total_score;
-				Slist.data[i]['aj_score'] = 0; //未使用とする
+				Slist.data[i]['aj_score'] = eigo  + rika + active; //
 
 				//無資格のチェック
 				if ( ( eigo == 0) || (rika == 0) || (active == 0) ) {
@@ -713,6 +716,7 @@
 
 			//学科試験の成績
 			var gakka = 0;
+			var gakka_org = 0;　//成績統計用の100点換算前学科成績
 			var eigo = 0;
 			var datas = [];
 			var min_score = 0;
@@ -748,12 +752,14 @@
 				case '4':
 				case '5':
 				case '6':
-				gakka = (eigo + gakka)  * (92 / 300);
+					gakka_org = eigo + gakka;
+					gakka = (eigo + gakka)  * (92 / 300);
 					min_score = Slist.selectMinScore(datas, 3);
 					break;
 
 				case '7':
 					gakka = Slist.selectScore(datas, 2)  *  (92 / 200); //全体の上位2つを利用する
+					gakka_org = Slist.selectScore(datas, 2);
 					min_score = Slist.selectMinScore(datas, 2);
 					break;
 
@@ -766,7 +772,7 @@
 			//total_score = Math.round(total_score * 100) / 100;
 
 			Slist.data[i]['score'] = total_score;
-			Slist.data[i]['aj_score'] = 0; //未使用とする
+			Slist.data[i]['aj_score'] = gakka_org;
 
 			//無資格のチェック 選択科目に0点があった場合
 			//理科(基礎）を2科目選択した場合も無資格
@@ -807,6 +813,7 @@
 			var datasGsel = [];
 			var min_score = 0;
 			var score = 0;
+			var score_org = 0; //広報統計用の100点換算前成績
 
 			for (var j = 0; j < Slist.data[i].k_list.length; j++) {
 				tmpnum = Slist.kamokuScore( Slist.data[i].k_list[j] );
@@ -862,6 +869,7 @@
 					datas[4] = score_G2;
 					datas[5] = score_G3;
 					score = (score_J1K1 + Slist.selectScore(datas, 3)) * (1 / 4);
+					score_org = score_J1K1 + Slist.selectScore(datas, 3);
 					//無資格チェックのため
 					datas[6] = score_J1K1;
 					min_score = Slist.selectMinScore(datas, 4);
@@ -886,6 +894,7 @@
 					datas[6] = score_G3;
 					*/
 					score = (score_J1K1 + Slist.selectScore(datas, 2)) * (1 / 3);
+					score_org = score_J1K1 + Slist.selectScore(datas, 2);
 					//無資格チェックのため
 					datas.push(score_J1K1);
 					min_score = Slist.selectMinScore(datas, 3);
@@ -898,6 +907,7 @@
 					var rika2 = Slist.selectScore(datasGsel, 2);
 					var rika = (rika1 > rika2) ? rika1 : rika2;
 					score = (score_J1K1 + score_D2 + score_E2 + rika) * (1 / 6);
+					score_org = score_J1K1 + score_D2 + score_E2 + rika;
 					//無資格チェックのため
 					datas[0] = score_J1K1;
 					datas[1] = score_D2;
@@ -930,6 +940,7 @@
 					datas[7] = score_G3;
 					*/
 					score = Slist.selectScore(datas, 2) * (1 / 2);
+					score_org = Slist.selectScore(datas, 2);
 					//無資格チェックのため
 					min_score = Slist.selectMinScore(datas, 2);
 					break;
@@ -941,7 +952,7 @@
 			total_score = score;
 
 			Slist.data[i]['score'] = total_score;
-			Slist.data[i]['aj_score'] = 0; //未使用とする
+			Slist.data[i]['aj_score'] = score_org;
 
 			//無資格のチェック 選択科目に0点があった場合
 			if (min_score == 0) {
@@ -970,6 +981,7 @@
 
 			//学科試験の成績
 			var gakka = 0;
+			var gakka_org = 0; //広報統計用の100点換算前学科成績
 			var datas = [];
 			var min_score = 0;
 
@@ -986,11 +998,13 @@
 				case '4':
 				case '5':
 				case '6':
+					gakka_org = gakka;
 					gakka = gakka * (1 / 4);
 					min_score = Slist.selectMinScore(datas, 2);
 					break;
 
 				case '7':
+					gakka_org = gakka;
 					gakka = gakka * (1 / 2);
 					min_score = Slist.selectMinScore(datas, 1);
 					break;
@@ -1002,7 +1016,7 @@
 			total_score = gakka;
 
 			Slist.data[i]['score'] = total_score;
-			Slist.data[i]['aj_score'] = 0; //未使用とする
+			Slist.data[i]['aj_score'] = gakka_org;
 
 			//無資格のチェック 選択科目に0点があった場合
 			if (min_score == 0) {
