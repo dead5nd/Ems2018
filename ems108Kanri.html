@@ -22,12 +22,12 @@
 		<script src="./jquery/autosize.min.js"></script>
 		<script src="./jquery/sha256.js"></script>
 		<script src="./jquery/encoding.js"></script>
-		
+
 		<!-- bootstrap-datepicker -->
 		<link rel="stylesheet" href="./css/bootstrap-datepicker3.min.css" />
 		<script src="./jquery/bootstrap-datepicker.min.js"></script>
 		<script src="./jquery/bootstrap-datepicker.ja.min.js"></script>
-		
+
 
 		<!-- Data Tables -->
 		<link rel="stylesheet" href="./css/jquery.dataTables.min.css" />
@@ -37,30 +37,30 @@
 		<script src="./jquery/dataTables.fixedHeader.min.js"></script>
 
 		<link rel="stylesheet" href="./css/custom.css" />
-				
-		<script src="./js/settingcode.js?ver=20171204"></script>
-		<script src="./js/commoncode.js?ver=20171204"></script>
-		<script src="./js/cmnlogin.js?ver=20171204"></script>
-		<script src="./js/menuitem.js?ver=20171204"></script>
-		<script src="./js/cd.js?ver=20171204"></script>
-		<script src="./js/utf2sjis.js?ver=20171204"></script>
-		<script src="./js/cmncontrol.js?ver=20171204"></script>
-		
-		<script src="./js/ems108/ems108valid.js?ver=20171204"></script>
-		<script src="./js/ems108/ems108viewmodel.js?ver=20171204"></script>
-		<script src="./js/ems108/ems108control.js?ver=20171204"></script>
+
+		<script src="./js/settingcode.js?ver=20180527"></script>
+		<script src="./js/commoncode.js?ver=20180527"></script>
+		<script src="./js/cmnlogin.js?ver=20180527"></script>
+		<script src="./js/menuitem.js?ver=20180527"></script>
+		<script src="./js/cd.js?ver=20180527"></script>
+		<script src="./js/utf2sjis.js?ver=20180527"></script>
+		<script src="./js/cmncontrol.js?ver=20180527"></script>
+
+		<script src="./js/ems108/ems108valid.js?ver=20180527"></script>
+		<script src="./js/ems108/ems108viewmodel.js?ver=20180527"></script>
+		<script src="./js/ems108/ems108control.js?ver=20180527"></script>
 
 	</head>
 	<body>
-		
+
 		<div id="page01">
 		<div class="container">
 		<div class="row">
-		
+
 		<div id="menuParts">
 			<!--MENU-->
 		</div>
-		
+
 		<!-- ################ 入力画面 ################ -->
 		<form class="form-horizontal" id="page01form1">
 			<div class="panel panel-primary">
@@ -71,11 +71,11 @@
 					</a>
 				</h3>
 			</div>
-			
+
 			<div id="searchAccCollapse" class="panel-collapse collapse in">
 			<div class="panel-body">
 			<fieldset class="cs-search">
-			
+
 
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="siken_cd">試験区分</label>
@@ -87,7 +87,7 @@
 				  				<option value="" >指定なし</option>
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
@@ -101,13 +101,13 @@
 				  				<option value="" >指定なし</option>
 				  				{{each rows}}
 									<option value=${cd} > ${name} </option>
-								{{/each}}	
+								{{/each}}
 								</select>
 							</script>
 						<!-- jQuery Template -->
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="seiri_no">整理番号</label>
 		  			<div class="col-sm-5">
@@ -118,7 +118,7 @@
 		  				<input type="text"  class="form-control" name="email" id="email" placeholder="">
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="entry_ymd_s">出願日</label>
 	  				<div class="col-sm-5 form-inline">
@@ -133,7 +133,7 @@
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="nyukin_ymd_s">入金日</label>
 		  			<div class="col-sm-11 form-inline">
@@ -141,7 +141,7 @@
 		  				<input type="text" class="form-control datepicker" id="nyukin_ymd_e" name="nyukin_ymd_e">
 		  			</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-1 control-label" for="nyukin_stat">入金状況</label>
 					<div class="col-sm-3">
@@ -163,7 +163,18 @@
 						</select>
 					</div>
 				</div>
-				
+
+				<div class="form-group">
+					<label class="col-sm-1 control-label" for="gohi_stat">合否状況</label>
+					<div class="col-sm-3">
+		  				<select class="form-control" name="gohi_stat" id="gohi_stat">
+				  			<option value="" >指定なし</option>
+				  			<option value="1" >欠席</option>
+				  			<option value="2" >不合格</option>
+						</select>
+					</div>
+				</div>
+
 				<div class="form-group">
 		  			<label class="col-sm-1 control-label" for="kana_simei_sei">カナ氏名</label>
 		  			<div class="col-sm-4">
@@ -176,7 +187,7 @@
 						<button type="submit" class="btn btn-default" id="page01Search">検索</button>
 					</div>
 				</div>
-				
+
 			</fieldset>
 
 			</div> <!--panel-body-->
@@ -187,7 +198,7 @@
 			<input type="hidden" id="nendo" name="nendo">
 
 			<div id="table_Tmpl"></div>
-				
+
 				<!-- jQuery Template -->
 			  	<script id="table_Script" type="text/x-jquery-tmpl">
 			  		<div class="form-group">
@@ -199,7 +210,7 @@
 						</div>
 						<div class="col-xs-3"></div>
 					</div>
-					
+
 					<table class="table table-striped" id="page01Table">
 						<thead>
 							<tr class="active">
@@ -220,7 +231,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							
+
 						{{each rows}}
 							<tr id=${password}>
 								<td > ${seiri_no}</td>
@@ -244,17 +255,17 @@
 
 				<!-- jQuery Template -->
 				</script>
-			
+
 		</form>
-		
+
 		</div> <!--row-->
 		</div> <!--container-->
 		</div> <!--page-->
 
 		<div id="dialogParts">
 			<!--DIALOG-->
-		</div>	
-		
+		</div>
+
 <div class="modal fade" id="nyukin_edit_modal" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -292,7 +303,7 @@
 		</div>
 	</div>
 </div>
-		
-		
+
+
 </body>
 </html>

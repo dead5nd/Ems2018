@@ -62,8 +62,8 @@
 	/**
 	 * ベースURL設定
 	 */
-	//stngcode.ajax.baseSvUrl = "http://" + location.host + "/nyushi2018/"; //TEST
-	stngcode.ajax.baseSvUrl = "https://" + location.host + "/ems2018/"; //本番
+	stngcode.ajax.baseSvUrl = "http://" + location.host + "/ems2018/"; //TEST
+	//stngcode.ajax.baseSvUrl = "https://" + location.host + "/ems2018/"; //本番
 
 	/**
 	 * 一斉メール送信時の同時送信件数
@@ -341,6 +341,7 @@
 	/**
 	 *メールひな形取得
 	 */
+	 /*
 	stngcode.ajax.mailTmpUrl = {
 		"1":{"url":"https://script.google.com/a/macros/fit-world.jp/s/AKfycbxc5_dr4l2knzGRKP6oF1RTTuDcv-AkPZ7KOdWraDQ4p975tf4/exec"},
 		"2":{"url":"https://script.google.com/a/macros/fit-world.jp/s/AKfycbxc5_dr4l2knzGRKP6oF1RTTuDcv-AkPZ7KOdWraDQ4p975tf4/exec"},
@@ -351,6 +352,19 @@
 		"1":{"url":"https://script.google.com/a/macros/fit-world.jp/s/AKfycby4LMsycm5HA9Nh_Dbxrna3W3eoF2gNZ52sUAtbETKDiLPsemWP/exec"},
 		"2":{"url":"https://script.google.com/a/macros/fit-world.jp/s/AKfycby4LMsycm5HA9Nh_Dbxrna3W3eoF2gNZ52sUAtbETKDiLPsemWP/exec"},
 		"3":{"url":"https://script.google.com/a/macros/fit-world.jp/s/AKfycby4LMsycm5HA9Nh_Dbxrna3W3eoF2gNZ52sUAtbETKDiLPsemWP/exec"}
+	}
+	*/
+
+	stngcode.ajax.mailTmpUrl = {
+		"1":{"url":"https://script.google.com/a/macros/fujita-hu.ac.jp/s/AKfycbx7n4BPtV0otyxrZnQD7LjX_St3lLcq2AhxQz_MdCjWS-m2UHpK/exec"},
+		"2":{"url":"https://script.google.com/a/macros/fujita-hu.ac.jp/s/AKfycbyQl87abmPwD_bnRWe6C6xK7z8xP8rgAkojm28nhC5sSIqMwVn0/exec"},
+		"3":{"url":"https://script.google.com/a/macros/fujita-hu.ac.jp/s/AKfycbwUtYQ1xFOnte1BzSZPMSpBoqt6Jjv3A6ON-XF9mcacAuNftvQ/exec"}
+	}
+
+	stngcode.ajax.mailTmpUpdateUrl = {
+		"1":{"url":"https://script.google.com/macros/s/AKfycbwXU76xuRLj449ItA6B45_1q_OUr51PXj0Y_4BES4s6Qda9A4um/exec"},
+		"2":{"url":"https://script.google.com/macros/s/AKfycbxnhpJrGAK-l4cInBQWIuFbsWcdXV-wsBhXf4By4xp3Zeluob8Q/exec"},
+		"3":{"url":"https://script.google.com/macros/s/AKfycbzDhA0HcBkCieUJ9KWqpZqwBnvzqbSK9s-GxTvvW-pB9wWQpog/exec"}
 	}
 
 
@@ -540,6 +554,11 @@
 	stngcode.msg.ems406prog = "合否データ入力中";
 	stngcode.msg.ems406conf = "合否データ一括登録を行います。<br><br>よろしいですか？";
 	stngcode.msg.ems406end = "件のデータをインポートしました";
+
+	stngcode.msg.ems407prog1 = "出力対象データ検索中";
+	stngcode.msg.ems407prog2 = "成績情報登録中";
+	stngcode.msg.ems407conf = "成績情報開示を行います。<br><br>よろしいですか？";
+	stngcode.msg.ems407end = "件のデータを登録しました";
 
 	stngcode.msg.ems500prog1 = "受験生詳細情報検索中";
 	stngcode.msg.ems500prog2 = "受験生情報変更中";

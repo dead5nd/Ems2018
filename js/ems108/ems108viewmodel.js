@@ -1,4 +1,4 @@
-/** 
+/**
 * @fileOverview Ems108画面表示・ビジネスロジック
 * @author FiT
 * @version 1.0.0
@@ -9,13 +9,13 @@
 {
 	/**
 	 *
-	 * コンストラクタ 
+	 * コンストラクタ
 	 *
 	 */
 	Ems108ViewModel = function()
 	{
 	};
-	
+
 	/**
 	 *
      * 画面生成時の初期処理
@@ -26,13 +26,13 @@
 		var code = Login.gakubuCd;
 		cmncode.template.bind("siken_Script", {"rows": cd.siken[code]} , "siken_Tmpl");
 		cmncode.template.bind("gakka_Script", {"rows": cd.gakka[code]} , "gakka_Tmpl");
-		
+
 		// Data Picker初期化
 		cmncode.datepickerInit(true);
 
-	};	
-	
-	
+	};
+
+
 	/**
 	 *
      * Search処理
@@ -43,12 +43,12 @@
 
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems108prog1);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
-		
+		var sendData = {};
+
 		var sql = "SELECT s.torihiki_id, s.gakubu_cd, s.siken_cd, u.email, u.kanji_simei_sei, u.kanji_simei_mei, u.birthday, e.entry_ymd, e.kesai_type_nm, e.nyukin_kigen, e.nyukin_stat, e.nyukin_ymd, e.kesai_kingaku, e.torikesi_flg, u.password, e.mail_json FROM t_siken s INNER JOIN t_user u ON u.email = s.email INNER JOIN t_entry e ON e.torihiki_id = s.torihiki_id ";
-		
+
 		sql = sql + "WHERE s.gakubu_cd = '" + Login.gakubuCd + "'";
 		//入力項目により条件を追加していく
 		if ($("#siken_cd").val()) { sql = sql + " AND s.siken_cd='" + $("#siken_cd").val() + "'" ; }
@@ -59,21 +59,24 @@
 		if ($("#kesai_type_cd").val()) { sql = sql + " AND e.kesai_type_cd='" + $("#kesai_type_cd").val() + "'"; }
 		if ($("#kana_simei_sei").val()) { sql = sql + " AND u.kana_simei_sei like '%" + $("#kana_simei_sei").val() + "%'"; }
 		if ($("#kana_simei_mei").val()) { sql = sql + " AND u.kana_simei_mei like '%" + $("#kana_simei_mei").val() + "%'"; }
-		
+
 		if ($("#entry_ymd_s").val()) { sql = sql + " AND e.entry_ymd >='" + $("#entry_ymd_s").val() + " 00:00:00'"; }
 		if ($("#entry_ymd_e").val()) { sql = sql + " AND e.entry_ymd <='" + $("#entry_ymd_e").val() + " 23:59:59'"; }
-		
+
 		if ($("#nyukin_ymd_s").val()) { sql = sql + " AND e.nyukin_ymd >='" + $("#nyukin_ymd_s").val() + " 00:00:00'"; }
 		if ($("#nyukin_ymd_e").val()) { sql = sql + " AND e.nyukin_ymd <='" + $("#nyukin_ymd_e").val() + " 23:59:59'"; }
-		
+
 		if ($("#torikesi_flg").val()) { sql = sql + " AND e.torikesi_flg <> '1'"; }
-			
+
+		//成績開示用に追加
+		if ($("#gohi_stat").val()) { sql = sql + " AND s.gohi_stat='" + $("#gohi_stat").val() + "'"; }
+
 		sendData['sql'] = sql;
 		var reqdate = cmncode.getTimeStr();
 		sendData['email'] = stngcode.inet.Email;
 		sendData['reqdate'] = reqdate;
 		sendData['hash'] = cmncode.getLoginHash( stngcode.inet.Email, reqdate, stngcode.inet.Token );
-		
+
 		$.ajax({
 			url:stngcode.inet.inetHanyoUrl,
 			type: 'post',
@@ -88,7 +91,7 @@
 					if ('srch_list' in data) {
 						//受信データの編集処理
 						Ems108ViewModel.checkSrchResult(data.srch_list);
-						
+
 						//jqueryTemplateで画面を作る
 						cmncode.template.bind("table_Script", {"rows": Ems108ViewModel.result_list} , "table_Tmpl");
 						// Data Tables初期化
@@ -116,11 +119,11 @@
 							],
 							language: {
 								url: stngcode.dataTableJpnUrl
-							} 
+							}
 						});
-									
+
 						//cmncode.dataTablesInit(true,0);
-						
+
 						// 検索画面閉じる
 						$("#searchAccCollapse").collapse('hide');
 					} else {
@@ -134,7 +137,7 @@
 					// 検索条件入力有効
 					$(".cs-search").prop('disabled', false);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -145,9 +148,9 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
-		
-	};	
+		});
+
+	};
 	/**
 	 *
      * 検索結果を一覧表示用に編集する
@@ -174,10 +177,10 @@
 			after_list[i]['password'] = list[i]['15'];
 			after_list[i]['mail_json'] =  JSON.stringify( list[i]['16'] ); //シリアライズして格納する
 		}
-		
+
 		Ems108ViewModel.result_list = after_list;
 	};
-	
+
 	/**
 	 *
      * 検索結果CSV出力処理
@@ -185,7 +188,7 @@
      */
 	Ems108ViewModel.export = function()
 	{
-	
+
 		var content = '整理番号,学部,試験区分,メールアドレス,氏名,生年月日,出願日時,支払方法,支払期限,入金状況,入金日,金額,取消\n';
 		for (var i = 0; i < Ems108ViewModel.result_list.length; i++) {
 			content += '"'   + Ems108ViewModel.result_list[i]['seiri_no'];
@@ -205,15 +208,15 @@
 		}
 		//var blob = new Blob([ bom, content ], { "type" : "text/csv" });
 		var blob = Utf2Sjis.convert(content);
-		if (window.navigator.msSaveBlob) { 
-			window.navigator.msSaveBlob(blob, "netentry_export.csv"); 
+		if (window.navigator.msSaveBlob) {
+			window.navigator.msSaveBlob(blob, "netentry_export.csv");
 		} else {
 			document.getElementById("export").href = window.URL.createObjectURL(blob);
 		}
 		location.reload();
-		
+
 	};
-	
+
 	/**
 	 *
      * 入金状況の変更
@@ -222,24 +225,24 @@
 	Ems108ViewModel.editNyukinStat = function( nyukin_stat )
 	{
 		var torihiki_id = Ems108ViewModel.torihiki_id;
-		
+
 		// 送信中のメッセージ表示
 		cmncode.dlg.showLoading(stngcode.msg.ems108prog2);
-		
+
 		// 送信情報を取得
-		var sendData = {};	
-		
+		var sendData = {};
+
 		var sql = "call update_nyukin_stat('torihiki_id','edit_stat');"
 
 		sql = sql.replace('torihiki_id', torihiki_id);
 		sql = sql.replace('edit_stat', nyukin_stat);
-		
+
 		sendData['sql'] = sql;
 		var reqdate = cmncode.getTimeStr();
 		sendData['email'] = stngcode.inet.Email;
 		sendData['reqdate'] = reqdate;
 		sendData['hash'] = cmncode.getLoginHash( stngcode.inet.Email, reqdate, stngcode.inet.Token );
-		
+
 		$.ajax({
 			url:stngcode.inet.inetHanyoUrl,
 			type: 'post',
@@ -256,7 +259,7 @@
 				} else {
 					cmncode.dlg.alertMessage('エラー', data.err_msg);
 				}
-				
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				cmncode.dlg.alertMessage('エラー', XMLHttpRequest.statusText + XMLHttpRequest.status);
@@ -264,13 +267,13 @@
 			complete: function() {
 				cmncode.dlg.hideLoading();
 			}
-		});	
+		});
 
-	};	
-	
+	};
+
 	/**
 	 *
-	 * 通知メール送信 
+	 * 通知メール送信
 	 * @parameter job 通知メールの種類
 	 */
 	Ems108ViewModel.sendMail = function(job)
@@ -279,7 +282,7 @@
 		//送信メッセージの編集
 		//
 		var param = {};
-		
+
 		param = Ems108ViewModel.mailParam;
 		//jobに応じてパラメータ変更
 		switch (job) {
@@ -287,14 +290,14 @@
 				param['job'] = 'mypage';
 				Ems108ViewModel.callGmail(param);
 				break;
-			
+
 			case 'syutugan':
 				if (param['mail_json'].length > 10) { //ある程度の長さがあるかで判断
 					var obj = JSON.parse(param['mail_json']);
 					Ems108ViewModel.callGmail(obj);
 				}
 				break;
-			
+
 			case 'nyukin':
 				//入金済みの場合のみ
 				if (param['nyukin_ymd']) {
@@ -302,7 +305,7 @@
 					Ems108ViewModel.callGmail(param);
 				}
 				break;
-			
+
 			case 'saisoku':
 				//未入金の場合のみ
 				if (!param['nyukin_ymd']) {
@@ -310,12 +313,12 @@
 					Ems108ViewModel.callGmail(param);
 				}
 				break;
-			
+
 		}
 	};
 	/**
 	 *
-	 * Gメール送信 
+	 * Gメール送信
 	 * @parameter param パラメータ
 	 */
 	Ems108ViewModel.callGmail = function(param)
@@ -325,7 +328,7 @@
 		//Gmail送信処理を呼び出しする
 		//
 		sendData['param'] = JSON.stringify( param );
-		
+
 		$.ajax({
 			url: stngcode.ajax.sendMaillUrl,
 			type: 'GET',
@@ -341,8 +344,8 @@
 			},
 			complete: function() {
 			}
-		});	
-		
+		});
+
 	};
-	
+
 })();
